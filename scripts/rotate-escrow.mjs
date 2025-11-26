@@ -20,10 +20,15 @@ const newKp = Keypair.generate();
 const newSecretB58 = bs58.encode(newKp.secretKey);
 fs.writeFileSync(file, newSecretB58, { mode: 0o600 });
 
+// SECURITY: Never output private keys to stdout/logs
+// Only output public keys for verification
 const result = {
   oldEscrowPubkey,
   newEscrowPubkey: newKp.publicKey.toString(),
-  newEscrowPrivateKeyB58: newSecretB58
+  // Private key is written to file only, never logged
+  privateKeySaved: true,
+  privateKeyPath: file
 };
 
 console.log(JSON.stringify(result, null, 2));
+console.error('⚠️  SECURITY: Private key saved to file only. Never commit or share this file.');
