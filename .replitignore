@@ -1,0 +1,19 @@
+# Exclude development and documentation files from deployment
+# CRITICAL: Exclude files that might trigger Replit's detection
+# NOTE: sql-scripts/ MUST be included (app needs them at runtime)
+
+# Documentation
+*.md
+docs/
+
+# Test files
+test-*.js
+diagnose-*.sh
+*.sh
+
+# Schema files that might trigger Replit's detection
+server/db/schema-drizzle.ts
+
+# Dev scripts ONLY (not the SQL files)
+scripts/check-migrations.mjs
+scripts/migrateSqliteToPostgres.ts

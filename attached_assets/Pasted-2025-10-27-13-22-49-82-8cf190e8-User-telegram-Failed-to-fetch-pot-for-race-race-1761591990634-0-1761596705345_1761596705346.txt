@@ -1,0 +1,72 @@
+2025-10-27 13:22:49.82
+8cf190e8
+User
+[telegram] Failed to fetch pot for race race_1761591990634_0: TypeError: Cannot destructure property 'getDb' of '(intermediate value)' as it is null.
+2025-10-27 13:22:49.82
+8cf190e8
+User
+at sendToTelegram (file:///home/runner/workspace/dist/index.js:11741:20)
+2025-10-27 13:22:49.82
+8cf190e8
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-27 13:22:49.82
+8cf190e8
+User
+[telegram] Using script /home/runner/workspace/scripts/send_telegram_race_results.py with /home/runner/workspace/.pythonlibs/bin/python3; target group=-1002746332286
+2025-10-27 13:22:50.05
+8cf190e8
+User
+{"level":30,"time":1761596570055,"pid":29,"hostname":"deployments--2405691825062330090.c.replit-user-18858646-mzfzjfds","msg":"GET /api/wallet/ANQZsrP1f6nUwehUw9wwScwgJMee8tbZLUmFaqYLXXRX/balances 304 in 10…"}
+2025-10-27 13:22:55.85
+8cf190e8
+User
+[telegram:err] Traceback (most recent call last):
+2025-10-27 13:22:55.85
+8cf190e8
+User
+File "/home/runner/workspace/scripts/send_telegram_race_results.py", line 278, in
+2025-10-27 13:22:55.85
+8cf190e8
+User
+[telegram:err] main()
+2025-10-27 13:22:55.85
+8cf190e8
+User
+[telegram:err] File "/home/runner/workspace/scripts/send_telegram_race_results.py", line 272, in main
+2025-10-27 13:22:55.85
+8cf190e8
+User
+[telegram:err] asyncio.run(async_main(args))
+2025-10-27 13:22:55.85
+8cf190e8
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/runners.py", line 190, in run
+2025-10-27 13:22:55.85
+8cf190e8
+User
+[telegram:err] return runner.run(main)
+2025-10-27 13:22:55.85
+8cf190e8
+User
+^^^^^^^^^^^^^^^^
+2025-10-27 13:22:55.85
+8cf190e8
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/runners.py", line 118, in run
+2025-10-27 13:22:55.86
+8cf190e8
+User
+[telegram:err] return self._loop.run_until_complete(task)
+2025-10-27 13:22:55.86
+8cf190e8
+User
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-10-27 13:22:55.86
+8cf190e8
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+2025-10-27 13:22:55.86
+8cf190e8
+User
+[telegram:err] return future.result()

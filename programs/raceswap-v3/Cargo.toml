@@ -1,0 +1,20 @@
+[package]
+name = "raceswap-v3"
+version = "3.0.0"
+description = "Raceswap V3 - Index-Based Non-Custodial Swap with 0.2% SOL Fee"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "raceswap_v3"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+idl-build = ["anchor-lang/idl-build"]
+
+[dependencies]
+anchor-lang = "0.30.1"

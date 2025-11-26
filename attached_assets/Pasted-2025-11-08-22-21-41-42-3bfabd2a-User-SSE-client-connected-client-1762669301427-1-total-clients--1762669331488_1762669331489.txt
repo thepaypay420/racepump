@@ -1,0 +1,129 @@
+2025-11-08 22:21:41.42
+3bfabd2a
+User
+SSE client connected: client_1762669301427_1, total clients: 2
+2025-11-08 22:21:41.43
+3bfabd2a
+User
+SSE client disconnected: client_1762669291404_0, remaining: 1
+2025-11-08 22:21:41.43
+3bfabd2a
+User
+SSE client disconnected: client_1762669291404_0, remaining: 1
+2025-11-08 22:21:41.43
+3bfabd2a
+User
+SSE client disconnected: client_1762669291404_0, remaining: 1
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+[telegram:err] Traceback (most recent call last):
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+File "/home/runner/workspace/scripts/send_telegram_race_results.py", line 278, in
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+[telegram:err] main()
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+File "/home/runner/workspace/scripts/send_telegram_race_results.py", line 272, in main
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+[telegram:err] asyncio.run(async_main(args))
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/runners.py", line 190, in run
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+[telegram:err] return runner.run(main)
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+^^^^^^^^^^^^^^^^
+2025-11-08 22:21:42.76
+3bfabd2a
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/runners.py", line 118, in run
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] return self._loop.run_until_complete(task)
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/nix/store/7d088dip86hlzri9sk0h78b63yfmx0a0-python3-3.11.13/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] return future.result()
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+^^^^^^^^^^^^^^^
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/home/runner/workspace/scripts/send_telegram_race_results.py", line 207, in async_main
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] await client.start(bot_token=bot_token)
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telethon/client/auth.py", line 135, in _start
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] await self.connect()
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telethon/client/telegrambaseclient.py", line 563, in connect
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] self.session.auth_key = self._sender.auth_key
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] ^^^^^^^^^^^^^^^^^^^^^
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telethon/sessions/sqlite.py", line 180, in auth_key
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] self._update_session_table()
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/telethon/sessions/sqlite.py", line 194, in _update_session_table
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+[telegram:err] c.execute('delete from sessions')
+2025-11-08 22:21:42.77
+3bfabd2a
+User
+sqlite3.OperationalError: database is locked
+
+2025-11-08 22:21:42.91
+3bfabd2a
+User
+[telegram] Sender exited with code 1
+2025-11-08 22:21:43.51
+3bfabd2a
+User
+📊 Current OPEN races: 3, target: 3 (no new races needed)

@@ -1,0 +1,85 @@
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ git pull origin main
+Username for 'https://github.com': thepaypay420
+Password for 'https://thepaypay420@github.com':
+remote: Enumerating objects: 105, done.
+remote: Counting objects: 100% (105/105), done.
+remote: Compressing objects: 100% (20/20), done.
+remote: Total 91 (delta 71), reused 90 (delta 70), pack-reused 0 (from 0)
+Unpacking objects: 100% (91/91), 41.41 KiB | 353.00 KiB/s, done.
+From https://github.com/thepaypay420/PumpRacer
+ * branch            main       -> FETCH_HEAD
+   5f5ee4b..f068f85  main       -> origin/main
+Updating 5f5ee4b..f068f85
+Fast-forward
+ Anchor.toml                     |   3 +-
+ V2_INTEGRATION_COMPLETE.md      | 150 +++++++++++++++++++++++++++++++++++++++++++
+ V2_SIZE_LIMITATION_FINDINGS.md  | 135 +++++++++++++++++++++++++++++++++++++++
+ V2_SUCCESS_SUMMARY.md           | 175 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ V3_DEPLOYMENT_GUIDE.md          | 257 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ V3_STATUS.md                    | 178 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ client/src/App.tsx              |   2 +
+ client/src/lib/raceswap-v2.ts   | 391 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ client/src/lib/raceswap-v3.ts   | 449 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ client/src/pages/TestV2.tsx     | 236 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ programs/raceswap-v3/Cargo.toml |  19 ++++++
+ programs/raceswap-v3/src/lib.rs | 113 ++++++++++++++++++++++++++++++++
+ replit.md                       |  26 ++++++++
+ scripts/deploy-v3.sh            |  74 +++++++++++++++++++++
+ scripts/test-v2-backend.mjs     | 274 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ scripts/test-v2-jupiter-v1.mjs  | 296 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ scripts/test-v2-real.mjs        | 409 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ scripts/test-v3-real.mjs        | 355 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ server/routes.ts                |  59 +++++++++++++++++
+ telegram-poster-bot.session     | Bin 28672 -> 28672 bytes
+ 20 files changed, 3600 insertions(+), 1 deletion(-)
+ create mode 100644 V2_INTEGRATION_COMPLETE.md
+ create mode 100644 V2_SIZE_LIMITATION_FINDINGS.md
+ create mode 100644 V2_SUCCESS_SUMMARY.md
+ create mode 100644 V3_DEPLOYMENT_GUIDE.md
+ create mode 100644 V3_STATUS.md
+ create mode 100644 client/src/lib/raceswap-v2.ts
+ create mode 100644 client/src/lib/raceswap-v3.ts
+ create mode 100644 client/src/pages/TestV2.tsx
+ create mode 100644 programs/raceswap-v3/Cargo.toml
+ create mode 100644 programs/raceswap-v3/src/lib.rs
+ create mode 100755 scripts/deploy-v3.sh
+ create mode 100644 scripts/test-v2-backend.mjs
+ create mode 100644 scripts/test-v2-jupiter-v1.mjs
+ create mode 100644 scripts/test-v2-real.mjs
+ create mode 100644 scripts/test-v3-real.mjs
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ anchor build --program-name raceswap-v3
+`anchor` 0.30.1 is not installed with `avm`. Installing...
+
+    Updating git repository `https://github.com/coral-xyz/anchor`
+warning: skipping duplicate package `swap` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/cfo/deps/swap/programs/swap`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/zero-copy/programs/shared`
+warning: skipping duplicate package `relations-derivation` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/relations-derivation`
+warning: skipping duplicate package `docs` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/docs`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/misc/programs/shared`
+warning: skipping duplicate package `external` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/declare-program/programs/external`
+error: binary `anchor` already exists in destination
+Add --force to overwrite
+Error: Failed to install 0.30.1, is it a valid version?
+Failed to install `anchor`: failed to install `anchor` 0.30.1 with avm, using 0.32.1 instead
+WARNING: `anchor-lang` version(0.30.1) and the current CLI version(0.32.1) don't match.
+
+        This can lead to unwanted behavior. To use the same CLI version, add:
+
+        [toolchain]
+        anchor_version = "0.30.1"
+
+        to Anchor.toml
+
+WARNING: Adding `solana-program` as a separate dependency might cause conflicts.
+To solve, remove the `solana-program` dependency and use the exported crate from `anchor-lang`.
+`use solana_program` becomes `use anchor_lang::solana_program`.
+Program name: `raceswap`
+
+[2025-11-24T03:02:49.043168941Z ERROR cargo_build_sbf] Failed to obtain package metadata: `cargo metadata` exited with an error: error: current package believes it's in a workspace when it's not:
+    current:   /home/thepaypay/PumpRacer/programs/raceswap-v3/Cargo.toml
+    workspace: /home/thepaypay/PumpRacer/Cargo.toml
+
+    this may be fixable by adding `programs/raceswap-v3` to the `workspace.members` array of the manifest located at: /home/thepaypay/PumpRacer/Cargo.toml
+    Alternatively, to keep it out of the workspace, add the package to the `workspace.exclude` array, or add an empty `[workspace]` table to the package's manifest.
+
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$

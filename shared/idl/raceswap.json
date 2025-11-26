@@ -1,0 +1,459 @@
+{
+  "version": "0.1.0",
+  "name": "raceswap",
+  "instructions": [
+    {
+      "name": "initializeConfig",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "InitializeConfigParams"
+          }
+        }
+      ]
+    },
+    {
+      "name": "updateConfig",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "UpdateConfigParams"
+          }
+        }
+      ]
+    },
+    {
+      "name": "executeRaceswap",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userInput",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userMainDestination",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userReflectionDestination",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryDestination",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "inputVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "swapAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "jupiterProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "ExecuteRaceswapParams"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "raceswapConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "treasuryWallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "reflectionFeeBps",
+            "type": "u16"
+          },
+          {
+            "name": "treasuryFeeBps",
+            "type": "u16"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "authorityBump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "InitializeConfigParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "treasuryWallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "reflectionFeeBps",
+            "type": "u16"
+          },
+          {
+            "name": "treasuryFeeBps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateConfigParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "newAuthority",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "treasuryWallet",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "reflectionFeeBps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "treasuryFeeBps",
+            "type": {
+              "option": "u16"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SerializedInstruction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "accountsLen",
+            "type": "u16"
+          },
+          {
+            "name": "data",
+            "type": {
+              "vec": "u8"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExecuteRaceswapParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+            {
+              "name": "inputMint",
+              "type": "publicKey"
+            },
+            {
+              "name": "mainOutputMint",
+              "type": "publicKey"
+            },
+            {
+              "name": "reflectionMint",
+              "type": "publicKey"
+            },
+          {
+            "name": "totalInputAmount",
+            "type": "u64"
+          },
+          {
+            "name": "minMainOut",
+            "type": "u64"
+          },
+          {
+            "name": "minReflectionOut",
+            "type": "u64"
+          },
+          {
+            "name": "disableReflection",
+            "type": "bool"
+          },
+          {
+            "name": "mainLeg",
+            "type": {
+              "option": {
+                "defined": "SerializedInstruction"
+              }
+            }
+          },
+          {
+            "name": "reflectionLeg",
+            "type": {
+              "option": {
+                "defined": "SerializedInstruction"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "ConfigUpdated",
+      "fields": [
+        {
+          "name": "authority",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "treasuryWallet",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "reflectionFeeBps",
+          "type": "u16",
+          "index": false
+        },
+        {
+          "name": "treasuryFeeBps",
+          "type": "u16",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "SwapExecuted",
+      "fields": [
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "inputMint",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "mainOutputMint",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "reflectionOutputMint",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "totalIn",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "mainAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "reflectionAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "treasuryAmount",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidFeeConfig",
+      "msg": "Invalid fee configuration"
+    },
+    {
+      "code": 6001,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6002,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6003,
+      "name": "MissingReflectionLeg",
+      "msg": "Reflection leg required"
+    },
+    {
+      "code": 6004,
+      "name": "MissingMainLeg",
+      "msg": "Main leg required"
+    },
+    {
+      "code": 6005,
+      "name": "UnexpectedReflectionLeg",
+      "msg": "Reflection leg unexpected when disabled or dusted"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidReflectionAccount",
+      "msg": "Invalid reflection token account"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidMainAccount",
+      "msg": "Invalid main token account"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidVaultMint",
+      "msg": "Invalid vault mint"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidUserSource",
+      "msg": "Invalid user source account"
+    },
+    {
+      "code": 6011,
+      "name": "ReflectionBelowMinOut",
+      "msg": "Reflection amount below min"
+    },
+    {
+      "code": 6012,
+      "name": "MainBelowMinOut",
+      "msg": "Main amount below min"
+    },
+    {
+      "code": 6013,
+      "name": "SwapCpiFailed",
+      "msg": "Swap CPI failed"
+    },
+    {
+      "code": 6014,
+      "name": "AccountMismatch",
+      "msg": "Account mismatch for serialized instruction"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidReflectionAccounting",
+      "msg": "Invalid reflection accounting delta"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidMainAccounting",
+      "msg": "Invalid main accounting delta"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidReflectionSplit",
+      "msg": "Reflection split is zero but instructions provided"
+    },
+    {
+      "code": 6018,
+      "name": "BumpMissing",
+      "msg": "Missing PDA bump"
+    },
+    {
+      "code": 6019,
+      "name": "InvalidTreasuryAccount",
+      "msg": "Invalid treasury token account or mint"
+    }
+  ],
+  "metadata": {
+    "address": "Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk"
+  }
+}

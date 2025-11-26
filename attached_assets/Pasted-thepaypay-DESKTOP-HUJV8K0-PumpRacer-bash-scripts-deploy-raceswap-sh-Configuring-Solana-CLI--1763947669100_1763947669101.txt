@@ -1,0 +1,114 @@
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ bash scripts/deploy-raceswap.sh
+➡️  Configuring Solana CLI
+Deployer pubkey: 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u
+➡️  Installing npm deps (if needed)
+➡️  Building Anchor program
+`anchor` 0.30.1 is not installed with `avm`. Installing...
+
+    Updating git repository `https://github.com/coral-xyz/anchor`
+warning: skipping duplicate package `swap` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/cfo/deps/swap/programs/swap`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/zero-copy/programs/shared`
+warning: skipping duplicate package `relations-derivation` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/relations-derivation`
+warning: skipping duplicate package `docs` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/docs`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/misc/programs/shared`
+warning: skipping duplicate package `external` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/declare-program/programs/external`
+error: binary `anchor` already exists in destination
+Add --force to overwrite
+Error: Failed to install 0.30.1, is it a valid version?
+Failed to install `anchor`: failed to install `anchor` 0.30.1 with avm, using 0.32.1 instead
+WARNING: `anchor-lang` version(0.30.1) and the current CLI version(0.32.1) don't match.
+
+        This can lead to unwanted behavior. To use the same CLI version, add:
+
+        [toolchain]
+        anchor_version = "0.30.1"
+
+        to Anchor.toml
+
+WARNING: Adding `solana-program` as a separate dependency might cause conflicts.
+To solve, remove the `solana-program` dependency and use the exported crate from `anchor-lang`.
+`use solana_program` becomes `use anchor_lang::solana_program`.
+Program name: `raceswap`
+
+   Compiling raceswap v0.1.0 (/home/thepaypay/PumpRacer/programs/raceswap)
+warning: unexpected `cfg` condition value: `custom-heap`
+  --> programs/raceswap/src/lib.rs:10:1
+   |
+10 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-heap` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+   = note: this warning originates in the macro `$crate::custom_heap_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `custom-panic`
+  --> programs/raceswap/src/lib.rs:10:1
+   |
+10 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-panic` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the macro `$crate::custom_panic_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap/src/lib.rs:10:1
+   |
+10 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap/src/lib.rs:10:1
+   |
+10 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap/src/lib.rs:67:10
+   |
+67 | #[derive(Accounts)]
+   |          ^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: `raceswap` (lib) generated 10 warnings (5 duplicates)
+    Finished `release` profile [optimized] target(s) in 1.63s
+   Compiling raceswap v0.1.0 (/home/thepaypay/PumpRacer/programs/raceswap)
+error[E0432]: unresolved import `raceswap::instruction::ExecuteRaceswap`
+ --> programs/raceswap/tests/encoder.rs:4:5
+  |
+4 | use raceswap::instruction::ExecuteRaceswap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^---------------
+  |     |                      |
+  |     |                      help: a similar name exists in the module: `ExecuteSwap`
+  |     no `ExecuteRaceswap` in `instruction`
+
+error[E0432]: unresolved imports `raceswap::ExecuteRaceswapParams`, `raceswap::SerializedInstruction`
+ --> programs/raceswap/tests/encoder.rs:5:16
+  |
+5 | use raceswap::{ExecuteRaceswapParams, SerializedInstruction};
+  |                ^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^ no `SerializedInstruction` in the root
+  |                |
+  |                no `ExecuteRaceswapParams` in the root
+  |                help: a similar name exists in the module: `ExecuteSwapParams`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `raceswap` (test "encoder") due to 2 previous errors
+Error: Building IDL failed. Run `ANCHOR_LOG=true anchor idl build` to see the logs.
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$

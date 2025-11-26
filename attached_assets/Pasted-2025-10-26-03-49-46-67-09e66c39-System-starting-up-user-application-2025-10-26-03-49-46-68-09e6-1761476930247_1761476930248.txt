@@ -1,0 +1,116 @@
+2025-10-26 03:49:46.67
+09e66c39
+System
+starting up user application
+2025-10-26 03:49:46.68
+09e66c39
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2025-10-26 03:49:54.36
+09e66c39
+User
+> rest-express@1.0.0 start
+2025-10-26 03:49:54.36
+09e66c39
+User
+> NODE_ENV=production node dist/index.js
+2025-10-26 03:50:01.19
+09e66c39
+User
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+2025-10-26 03:50:03.62
+09e66c39
+User
+Postgres will be the ONLY backend (no SQLite cache)
+2025-10-26 03:50:03.62
+09e66c39
+User
+All database operations will use Postgres directly
+2025-10-26 03:50:03.62
+09e66c39
+User
+✅ Production mode: Postgres-only (no SQLite)
+2025-10-26 03:50:03.62
+09e66c39
+User
+⏭️ Skipping SQLite table creation - production uses Postgres only
+2025-10-26 03:50:03.62
+09e66c39
+User
+ℹ️ Production mode: PostgresStorage will be initialized after Postgres connects
+2025-10-26 03:50:03.62
+09e66c39
+User
+📦 Using Postgres connection string from DATABASE_URL
+2025-10-26 03:50:03.62
+09e66c39
+User
+🔌 Postgres pool created (source=DATABASE_URL) -> postgresql://***:***@ep-blue-waterfall-aes4j7oi.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
+2025-10-26 03:50:03.87
+09e66c39
+User
+✅ Postgres connection verified
+2025-10-26 03:50:03.87
+09e66c39
+User
+🔄 Running migrations to initialize schema...
+2025-10-26 03:50:03.87
+09e66c39
+User
+🔍 Checking if database tables already exist...
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ All essential tables exist
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ Database schema already exists, skipping migrations
+2025-10-26 03:50:03.95
+09e66c39
+User
+(This is normal for production - tables persist across deployments)
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ Postgres initialized and ready
+2025-10-26 03:50:03.95
+09e66c39
+User
+📊 Persistence enabled: Receipts, leaderboard, and referrals will survive redeploys
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ Postgres initialized - setting up PostgresStorage
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ PostgresStorage initialized - production mode ready
+2025-10-26 03:50:03.95
+09e66c39
+User
+✅ Hydration completed, verifying diagnostics...
+2025-10-26 03:50:04.41
+09e66c39
+User
+🌍 Environment: production
+2025-10-26 03:50:04.41
+09e66c39
+User
+{"level":30,"time":1761475804416,"pid":30,"hostname":"deployments--1205624429094569928.c.replit-user-18858646-mzfzjfds","msg":"Winner selection: Based on highest price gain during race period"}
+2025-10-26 03:50:04.41
+09e66c39
+User
+🔍 Port configuration: PORT=5000, REPLIT_PORT=undefined, using port=5000
+2025-10-26 03:50:04.42
+09e66c39
+User
+Using Postgres for receipts/leaderboard
+2025-10-26 03:50:04.42
+09e66c39
+User
+Using Postgres for receipts/leaderboard
+2025-10-26 03:50:04.55
+09e66c39
+User
+🔐 Loaded escrow keypair from ESCROW_PRIVATE_KEY environment variable

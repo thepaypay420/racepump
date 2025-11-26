@@ -1,0 +1,164 @@
+1) client/src/lib/store.ts
+A) Add this import at the very top (if not present)
+import { queryClient } from '@/lib/queryClient';
+
+B) In export const handleSSEMessage = (data: any) => { ... }
+
+Add the two new cases, and add invalidateQueries inside the existing ones.
+
+Add these new cases inside the switch (data.type):
+case 'race_live':
+  // server signals race moved into IN_PROGRESS
+  setRace({ liveRaceActive: true });
+  showToast('Race Live', 'Price tracking started', 'info');
+  try {
+    await queryClient.invalidateQueries({ queryKey: ['races'] });
+    if (data?.data?.id) {
+      await queryClient.invalidateQueries({ queryKey: ['race', data.data.id] });
+    }
+  } catch (e) {
+    console.warn('Invalidate queries failed (race_live)', e);
+  }
+  break;
+
+case 'race_updated':
+  // periodic price updates during OPEN/LOCKED/IN_PROGRESS
+  try {
+    await queryClient.invalidateQueries({ queryKey: ['races'] });
+    if (data?.data?.raceId) {
+      await queryClient.invalidateQueries({ queryKey: ['race', data.data.raceId] });
+    }
+  } catch (e) {
+    console.warn('Invalidate queries failed (race_updated)', e);
+  }
+  break;
+
+In these existing cases, append the invalidate block (if not already present):
+
+race_created
+
+race_locked
+
+race_settled
+
+Append this to the end of each of those case bodies, before their break;:
+
+try {
+  await queryClient.invalidateQueries({ queryKey: ['races'] });
+  if (data?.data?.id) {
+    await queryClient.invalidateQueries({ queryKey: ['race', data.data.id] });
+  }
+} catch (e) {
+  console.warn('Invalidate queries failed', e);
+}
+
+
+This guarantees the list + detail pages refetch when the server emits phase changes.
+
+2) client/src/pages/Lobby.tsx
+Treat IN_PROGRESS like LOCKED in the “in progress” section
+
+Find the line that builds the in-progress array (it currently filters only LOCKED), and change to:
+
+const inProgressRaces = sortedRaces
+  .filter(race => race.status === 'LOCKED' || race.status === 'IN_PROGRESS')
+  .slice(0, 3);
+
+(Optional safety) add a gentle polling backstop to the races list query
+
+Where you call useQuery(['races'], getRaces, { ... }), add:
+
+refetchInterval: 5000,      // backstop in case SSE missed
+refetchOnWindowFocus: true, // refresh when user focuses tab
+
+3) client/src/pages/LiveRace.tsx
+Allow IN_PROGRESS everywhere you gate on LOCKED
+
+In the main guard near the top, replace:
+
+if (raceData?.status !== 'LOCKED' && raceData?.status !== 'SETTLED') {
+
+
+with:
+
+if (
+  raceData?.status !== 'LOCKED' &&
+  raceData?.status !== 'IN_PROGRESS' &&
+  raceData?.status !== 'SETTLED'
+) {
+
+
+Where you conditionally render the live progress UI, replace:
+
+if (raceData?.status === 'LOCKED' && !raceFinished) {
+
+
+with:
+
+if ((raceData?.status === 'LOCKED' || raceData?.status === 'IN_PROGRESS') && !raceFinished) {
+
+
+(Optional backstop) For the progress query, add a light poll:
+
+const progressQuery = useQuery(['race-progress', raceId], () => getRaceProgress(raceId!), {
+  enabled: !!raceId && (raceData?.status === 'LOCKED' || raceData?.status === 'IN_PROGRESS'),
+  refetchInterval: 5000,
+});
+
+4) client/src/pages/RaceDetail.tsx
+Auto-redirect to live on LOCKED or IN_PROGRESS
+
+Find the redirect:
+
+if (raceData?.status === 'LOCKED') {
+  setLocation(`/race/${raceId}/live`);
+}
+
+
+Change to:
+
+if (raceData?.status === 'LOCKED' || raceData?.status === 'IN_PROGRESS') {
+  setLocation(`/race/${raceId}/live`);
+}
+
+5) client/src/components/RaceCard.tsx
+Show the same badge/color/countdown for IN_PROGRESS as LOCKED
+
+In getStatusColor() add IN_PROGRESS with the same style as LOCKED:
+
+case 'LOCKED':
+case 'IN_PROGRESS':
+  return 'bg-destructive/20 text-destructive border-destructive/50 animate-pulse';
+
+
+Anywhere you render countdown/locked UI with:
+
+{race.status === 'LOCKED' && ( ... )}
+
+
+change to:
+
+{(race.status === 'LOCKED' || race.status === 'IN_PROGRESS') && ( ... )}
+
+
+Where you reset/display baseline based on status, swap:
+
+if (race.status === 'LOCKED' && race.runners.some(r => r.initialPriceTs)) {
+
+
+→
+
+if ((race.status === 'LOCKED' || race.status === 'IN_PROGRESS') && race.runners.some(r => r.initialPriceTs)) {
+
+6) (Tiny server consistency tweak)
+
+If you haven’t already, in server/sse.ts inside forceRaceToLocked(raceId), right after:
+
+sqliteDb.updateRace(lockedRace);
+raceEvents.emit('race_locked', lockedRace);
+
+
+add:
+
+startedRaces.delete(raceId);        // clear the guard
+await createNewRaceIfNeeded();      // maintain 3 races after forced lock

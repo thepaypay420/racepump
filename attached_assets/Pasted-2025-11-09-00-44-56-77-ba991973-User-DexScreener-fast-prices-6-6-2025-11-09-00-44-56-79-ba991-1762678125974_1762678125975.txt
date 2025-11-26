@@ -1,0 +1,101 @@
+2025-11-09 00:44:56.77
+ba991973
+User
+⚡ DexScreener fast prices 6/6
+2025-11-09 00:44:56.79
+ba991973
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-09 00:44:56.91
+ba991973
+User
+[meme-reward] ✅ Swap confirmed: 2PARDWrsTyKi4mct7MfydxtNjSyxi3dQyvKriR3kXkUY8q4HUNiXagWEaHj3BbEb6RbpMbCTVK5Y5bWgFL969K6J
+2025-11-09 00:44:56.91
+ba991973
+User
+[meme-reward] Step 4: Sending 20526885675 community to ANQZsrP1f6nUwehUw9wwScwgJMee8tbZLUmFaqYLXXRX...
+2025-11-09 00:44:57.05
+ba991973
+User
+Sender ATA doesn't exist, will create: TokenAccountNotFoundError
+2025-11-09 00:44:57.05
+ba991973
+User
+Creating sender ATA for 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u...
+2025-11-09 00:44:57.15
+ba991973
+User
+🎯 Settlement: executeMemeReward returned undefined (check [meme-reward] logs for reason)
+
+2025-11-09 00:44:57.15
+ba991973
+User
+[meme-reward] ❌ Execution failed: SendTransactionError: Simulation failed.
+2025-11-09 00:44:57.15
+ba991973
+User
+Message: Transaction simulation failed: Error processing Instruction 0: Provided owner is not allowed.
+2025-11-09 00:44:57.15
+ba991973
+User
+Logs:
+2025-11-09 00:44:57.15
+ba991973
+User
+[
+2025-11-09 00:44:57.15
+ba991973
+User
+"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+2025-11-09 00:44:57.15
+ba991973
+User
+"Program log: Create",
+2025-11-09 00:44:57.15
+ba991973
+User
+"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 7929 of 200000 compute units",
+2025-11-09 00:44:57.15
+ba991973
+User
+"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL failed: Provided owner is not allowed"
+2025-11-09 00:44:57.15
+ba991973
+User
+].
+2025-11-09 00:44:57.15
+ba991973
+User
+Catch the `SendTransactionError` and call `getLogs()` on it for full details.
+2025-11-09 00:44:57.15
+ba991973
+User
+at Connection.sendEncodedTransaction (/home/runner/workspace/node_modules/@solana/web3.js/lib/index.cjs.js:8208:13)
+2025-11-09 00:44:57.15
+ba991973
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async Connection.sendRawTransaction (/home/runner/workspace/node_modules/@solana/web3.js/lib/index.cjs.js:8173:20)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async Connection.sendTransaction (/home/runner/workspace/node_modules/@solana/web3.js/lib/index.cjs.js:8164:12)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async sendTransactionWithRetries (file:///home/runner/workspace/dist/index.js:3867:25)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async sendSplTokens (file:///home/runner/workspace/dist/index.js:4163:23)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async executeMemeReward (file:///home/runner/workspace/dist/index.js:7709:23)
+2025-11-09 00:44:57.15
+ba991973
+User
+at async _RaceStateMachine.executeSettlement (file:///home/runner/workspace/dist/index.js:8731:36)

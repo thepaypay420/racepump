@@ -1,0 +1,141 @@
+2025-11-09 00:09:16.21
+814ecf8e
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-11-09 00:09:16.21
+814ecf8e
+User
+at async _RaceStateMachine.transitionRace (file:///home/runner/workspace/dist/index.js:8057:29)
+2025-11-09 00:09:16.21
+814ecf8e
+User
+at async RaceTimer.checkAndTransitionRaces (file:///home/runner/workspace/dist/index.js:6167:19)
+2025-11-09 00:09:16.21
+814ecf8e
+User
+at async Timeout.checkRaces [as _onTimeout] (file:///home/runner/workspace/dist/index.js:6009:13)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+❌ Failed to transition race race_1762672091817_0: Error: Lock blocked: another lock operation is in-flight
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at _RaceStateMachine.transitionToLocked (file:///home/runner/workspace/dist/index.js:8089:17)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at _RaceStateMachine.performTransition (file:///home/runner/workspace/dist/index.js:8072:31)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at async _RaceStateMachine.transitionRace (file:///home/runner/workspace/dist/index.js:8057:29)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at async RaceTimer.checkAndTransitionRaces (file:///home/runner/workspace/dist/index.js:6167:19)
+2025-11-09 00:09:18.76
+814ecf8e
+User
+at async Timeout.checkRaces [as _onTimeout] (file:///home/runner/workspace/dist/index.js:6009:13)
+2025-11-09 00:09:22.65
+814ecf8e
+User
+[news-monitor:err] [WARNING] Server closed the connection: [Errno 104] Connection reset by peer
+2025-11-09 00:09:22.65
+814ecf8e
+User
+[news-monitor:err] [INFO] Connection closed while receiving data: [Errno 104] Connection reset by peer
+2025-11-09 00:09:22.65
+814ecf8e
+User
+[INFO] Closing current connection to begin reconnect...
+2025-11-09 00:09:22.65
+814ecf8e
+User
+[news-monitor:err] [INFO] Connecting to 149.154.175.58:443/TcpFull...
+2025-11-09 00:09:22.65
+814ecf8e
+User
+[news-monitor:err] [INFO] during disconnect: [Errno 104] Connection reset by peer
+2025-11-09 00:09:22.70
+814ecf8e
+User
+[news-monitor:err] [INFO] Connection to 149.154.175.58:443/TcpFull complete!
+2025-11-09 00:09:59.12
+814ecf8e
+User
+GeckoTerminal API error: Error: No valid trending pump.fun tokens found
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at fetchFromGeckoTerminal (file:///home/runner/workspace/dist/index.js:5409:11)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async getNewPumpfunTokens (file:///home/runner/workspace/dist/index.js:5324:25)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async handleGetTokens (file:///home/runner/workspace/dist/index.js:5463:20)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async file:///home/runner/workspace/dist/index.js:11761:22
+2025-11-09 00:09:59.12
+814ecf8e
+User
+GeckoTerminal API failed: Error: No valid trending pump.fun tokens found
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at fetchFromGeckoTerminal (file:///home/runner/workspace/dist/index.js:5409:11)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async getNewPumpfunTokens (file:///home/runner/workspace/dist/index.js:5324:25)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async handleGetTokens (file:///home/runner/workspace/dist/index.js:5463:20)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async file:///home/runner/workspace/dist/index.js:11761:22
+2025-11-09 00:09:59.12
+814ecf8e
+User
+Failed to fetch tokens: Error: GeckoTerminal API failed and no fallback tokens allowed
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at getNewPumpfunTokens (file:///home/runner/workspace/dist/index.js:5333:9)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async handleGetTokens (file:///home/runner/workspace/dist/index.js:5463:20)
+2025-11-09 00:09:59.12
+814ecf8e
+User
+at async file:///home/runner/workspace/dist/index.js:11761:22
+2025-11-09 00:10:23.60
+814ecf8e
+User
+[news-monitor:err] [WARNING] Server closed the connection: [Errno 104] Connection reset by peer

@@ -1,0 +1,157 @@
+2025-11-08 23:03:03.11
+3cf77d71
+User
+SSE client connected: client_1762671783115_0, total clients: 1
+2025-11-08 23:03:04.51
+3cf77d71
+User
+⚡ DexScreener fast prices 6/6
+2025-11-08 23:03:04.84
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:04.91
+3cf77d71
+User
+⚡ DexScreener fast prices 3/3
+2025-11-08 23:03:04.93
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:05.02
+3cf77d71
+User
+⚡ DexScreener fast prices 4/4
+2025-11-08 23:03:05.04
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:08.71
+3cf77d71
+User
+📊 Current OPEN races: 3, target: 3 (no new races needed)
+2025-11-08 23:03:13.17
+3cf77d71
+User
+SSE client disconnected: client_1762671783115_0, remaining: 0
+2025-11-08 23:03:13.17
+3cf77d71
+User
+SSE client disconnected: client_1762671783115_0, remaining: 0
+2025-11-08 23:03:13.17
+3cf77d71
+User
+SSE client disconnected: client_1762671783115_0, remaining: 0
+2025-11-08 23:03:13.21
+3cf77d71
+User
+SSE client connected: client_1762671793213_0, total clients: 1
+2025-11-08 23:03:15.60
+3cf77d71
+User
+⚡ DexScreener fast prices 6/6
+2025-11-08 23:03:15.68
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:15.76
+3cf77d71
+User
+⚡ DexScreener fast prices 3/3
+2025-11-08 23:03:15.88
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:15.95
+3cf77d71
+User
+⚡ DexScreener fast prices 4/4
+2025-11-08 23:03:16.06
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:23.08
+3cf77d71
+User
+SSE client disconnected: client_1762671793213_0, remaining: 0
+2025-11-08 23:03:23.08
+3cf77d71
+User
+SSE client disconnected: client_1762671793213_0, remaining: 0
+2025-11-08 23:03:23.08
+3cf77d71
+User
+SSE client disconnected: client_1762671793213_0, remaining: 0
+2025-11-08 23:03:23.11
+3cf77d71
+User
+SSE client connected: client_1762671803109_0, total clients: 1
+2025-11-08 23:03:26.39
+3cf77d71
+User
+⚡ DexScreener fast prices 6/6
+2025-11-08 23:03:26.41
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+
+2025-11-08 23:03:26.44
+3cf77d71
+User
+⚡ DexScreener fast prices 3/3
+2025-11-08 23:03:26.47
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:26.50
+3cf77d71
+User
+⚡ DexScreener fast prices 4/4
+2025-11-08 23:03:26.52
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:28.71
+3cf77d71
+User
+📊 Current OPEN races: 3, target: 3 (no new races needed)
+2025-11-08 23:03:33.08
+3cf77d71
+User
+SSE client disconnected: client_1762671803109_0, remaining: 0
+2025-11-08 23:03:33.08
+3cf77d71
+User
+SSE client disconnected: client_1762671803109_0, remaining: 0
+2025-11-08 23:03:33.08
+3cf77d71
+User
+SSE client disconnected: client_1762671803109_0, remaining: 0
+2025-11-08 23:03:33.10
+3cf77d71
+User
+SSE client connected: client_1762671813099_0, total clients: 1
+2025-11-08 23:03:36.82
+3cf77d71
+User
+⚡ DexScreener fast prices 6/6
+2025-11-08 23:03:36.85
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:36.91
+3cf77d71
+User
+⚡ DexScreener fast prices 3/3
+2025-11-08 23:03:36.93
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients
+2025-11-08 23:03:37.01
+3cf77d71
+User
+⚡ DexScreener fast prices 4/4
+2025-11-08 23:03:37.03
+3cf77d71
+User
+Broadcasting event: race_updated to 1 clients

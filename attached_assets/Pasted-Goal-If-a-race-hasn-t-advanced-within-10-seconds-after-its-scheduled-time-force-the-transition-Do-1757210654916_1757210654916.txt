@@ -1,0 +1,105 @@
+Goal: If a race hasn’t advanced within 10 seconds after its scheduled time, force the transition. Do this for:
+
+OPEN → LOCKED
+
+LOCKED → IN_PROGRESS
+
+IN_PROGRESS → SETTLED
+
+Use a single constant GRACE_MS = 10_000.
+
+1) In server/sse.ts: add a grace constant near your other durations
+const OPEN_WINDOW_MINUTES = Number(process.env.OPEN_WINDOW_MINUTES ?? "30");
+const PROGRESS_WINDOW_MINUTES = Number(process.env.PROGRESS_WINDOW_MINUTES ?? "30");
+const OPEN_MS = OPEN_WINDOW_MINUTES * 60 * 1000;
+const PROGRESS_MS = PROGRESS_WINDOW_MINUTES * 60 * 1000;
+
+// NEW: transition watchdog
+const GRACE_MS = Number(process.env.TRANSITION_GRACE_MS ?? "10000"); // 10s
+
+2) In the startCountdownUpdater() 5s loop: tighten the fallbacks with GRACE
+
+Find the existing fallback blocks and make these exact adjustments:
+
+A) Force-lock overdue OPEN
+
+// Fallback: force-lock overdue OPEN races (add GRACE)
+const openRaces = sqliteDb.getRaces('OPEN');
+const now = Date.now();
+const overdueOpen = openRaces.filter(r => now >= (r.startTs + OPEN_MS + GRACE_MS));
+for (const r of overdueOpen) {
+  console.log(`⏱️ Fallback: force locking overdue race ${r.id}`);
+  try {
+    await forceRaceToLocked(r.id);
+  } catch (e) {
+    console.error(`❌ Fallback force lock failed for ${r.id}:`, e);
+  }
+}
+
+
+B) Promote overdue LOCKED → IN_PROGRESS or settle if fully overdue
+
+// Fallback: promote LOCKED or settle if progress window elapsed (with GRACE)
+try {
+  const lockedRaces = sqliteDb.getRaces('LOCKED');
+  for (const r of lockedRaces) {
+    const lockedTs = Number(r.lockedTs || 0);
+    if (!lockedTs) continue;
+
+    // Fully overdue: settle
+    if (now >= lockedTs + PROGRESS_MS + GRACE_MS) {
+      console.log(`⏱️ Fallback: settling overdue LOCKED race ${r.id}`);
+      try { await settleRace(r.id, lockedTs); } 
+      catch (e) { console.error(`❌ Fallback settle (LOCKED) failed for ${r.id}:`, e); }
+      continue;
+    }
+
+    // Slightly overdue: promote to IN_PROGRESS if never transitioned
+    if (!r.inProgressTs && now >= lockedTs + 2000 + GRACE_MS) {
+      console.log(`⏱️ Fallback: promoting race ${r.id} LOCKED → IN_PROGRESS`);
+      const inProgressRace = { ...r, status: 'IN_PROGRESS' as const, inProgressTs: Date.now() };
+      sqliteDb.updateRace(inProgressRace);
+      raceEvents.emit('race_live', inProgressRace);
+    }
+  }
+} catch (e) {
+  console.error('❌ Fallback LOCKED→IN_PROGRESS failed:', e);
+}
+
+
+C) Settle overdue IN_PROGRESS
+
+// Fallback: settle any IN_PROGRESS races whose window elapsed (with GRACE)
+try {
+  const inProgress = sqliteDb.getRaces('IN_PROGRESS');
+  for (const r of inProgress) {
+    const lockedTs = Number(r.lockedTs || 0);
+    if (!lockedTs) continue;
+    if (now >= lockedTs + PROGRESS_MS + GRACE_MS) {
+      console.log(`⏱️ Fallback: settling overdue IN_PROGRESS race ${r.id}`);
+      try { await settleRace(r.id, lockedTs); } 
+      catch (e) { console.error(`❌ Fallback settle (IN_PROGRESS) failed for ${r.id}:`, e); }
+    }
+  }
+} catch (e) {
+  console.error('❌ Fallback settle check failed:', e);
+}
+
+3) Consistency tweak (if not already done)
+
+In forceRaceToLocked(raceId), right after:
+
+sqliteDb.updateRace(lockedRace);
+raceEvents.emit('race_locked', lockedRace);
+
+
+add:
+
+startedRaces.delete(raceId); // ensure scheduler doesn’t think it’s still "started"
+await createNewRaceIfNeeded(); // keep 3 races topped up after forced lock
+
+4) (Optional but recommended) Environment variable
+
+You can tune the grace without code changes:
+
+TRANSITION_GRACE_MS=10000 (default 10s; you can raise to 15000 if APIs are slow)

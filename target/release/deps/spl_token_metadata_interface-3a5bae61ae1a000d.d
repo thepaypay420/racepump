@@ -1,0 +1,10 @@
+/workspace/target/release/deps/libspl_token_metadata_interface-3a5bae61ae1a000d.so: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/state.rs
+
+/workspace/target/release/deps/libspl_token_metadata_interface-3a5bae61ae1a000d.rlib: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/state.rs
+
+/workspace/target/release/deps/spl_token_metadata_interface-3a5bae61ae1a000d.d: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/error.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/instruction.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/state.rs
+
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/error.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/instruction.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/spl-token-metadata-interface-0.3.5/src/state.rs:

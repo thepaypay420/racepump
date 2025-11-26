@@ -1,0 +1,447 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(0, 0%, 10%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(158, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 8%);
+  --secondary: hsl(196, 100%, 50%);
+  --secondary-foreground: hsl(0, 0%, 8%);
+  --muted: hsl(0, 0%, 16%);
+  --muted-foreground: hsl(0, 0%, 70%);
+  --accent: hsl(320, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 8%);
+  --destructive: hsl(0, 100%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 20%);
+  --input: hsl(0, 0%, 14%);
+  --ring: hsl(158, 100%, 50%);
+  --sidebar: hsl(0, 0%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 95%);
+  --sidebar-primary: hsl(158, 100%, 50%);
+  --sidebar-primary-foreground: hsl(0, 0%, 8%);
+  --sidebar-accent: hsl(0, 0%, 16%);
+  --sidebar-accent-foreground: hsl(158, 100%, 50%);
+  --sidebar-border: hsl(0, 0%, 20%);
+  --sidebar-ring: hsl(158, 100%, 50%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: JetBrains Mono, monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(0, 0%, 10%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(158, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 8%);
+  --secondary: hsl(196, 100%, 50%);
+  --secondary-foreground: hsl(0, 0%, 8%);
+  --muted: hsl(0, 0%, 16%);
+  --muted-foreground: hsl(0, 0%, 70%);
+  --accent: hsl(320, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 8%);
+  --destructive: hsl(0, 100%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 20%);
+  --input: hsl(0, 0%, 14%);
+  --ring: hsl(158, 100%, 50%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(0 0% 4%) 0%, hsl(240 100% 2%) 50%, hsl(0 0% 4%) 100%);
+    background-attachment: fixed;
+  }
+}
+
+/* Grain overlay effect */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Ensure click-through on grain overlay for header/footer */
+header .grain-overlay,
+footer .grain-overlay {
+  pointer-events: none;
+}
+
+/* Neon glow effect */
+.neon-glow {
+  filter: drop-shadow(0 0 2px currentColor) drop-shadow(0 0 5px currentColor);
+}
+
+/* Racing track styles */
+.racing-track {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 136, 0.1) 2%,
+    rgba(0, 255, 136, 0.05) 48%,
+    rgba(0, 255, 136, 0.05) 52%,
+    rgba(0, 255, 136, 0.1) 98%,
+    transparent 100%
+  );
+  border-top: 1px solid rgba(0, 255, 136, 0.3);
+  border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.runner-lane {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 0.05) 0%,
+    transparent 50%,
+    rgba(0, 212, 255, 0.05) 100%
+  );
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.winner-lane {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 128, 0.1) 0%,
+    rgba(255, 0, 128, 0.05) 50%,
+    rgba(255, 0, 128, 0.1) 100%
+  );
+  border-bottom: 2px solid rgba(255, 0, 128, 0.6);
+}
+
+/* Pulse animation */
+.pulse-glow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  50% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+}
+
+/* Neon pulse animation */
+@keyframes neon-pulse {
+  0% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  100% {
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Race move animation */
+@keyframes race-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.animate-race-move {
+  animation: race-move 15s linear;
+}
+
+/* Car lane overlay - sits under text, above background; non-blocking */
+.car-lane {
+  position: relative;
+  height: 32px;
+  pointer-events: none;
+  z-index: 2; /* Header text uses z-10; main content is z-10; this lane stays below typical text wrappers */
+  overflow: visible;
+}
+
+.car-sprite {
+  height: 32px;
+  width: auto;
+  position: relative;
+  display: block;
+  animation: race-move 10s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.6));
+}
+
+/* Utility to break out of centered container and span viewport */
+.full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+}
+
+/* Winner glow animation */
+@keyframes winner-glow {
+  0% {
+    text-shadow: 0 0 10px currentColor;
+  }
+  100% {
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+.animate-winner-glow {
+  animation: winner-glow 1s ease-in-out infinite alternate;
+}
+
+/* Wallet Adapter UI Fix */
+.wallet-adapter-button-trigger .wallet-adapter-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.wallet-adapter-dropdown {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+}
+
+.wallet-adapter-dropdown-list {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+  background: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.wallet-adapter-dropdown-list-item {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  background: var(--popover) !important;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background: var(--accent) !important;
+}
+
+/* Ensure wallet button is clickable */
+.wallet-adapter-button:not([disabled]) {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.wallet-adapter-modal {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+}
+
+/* Wallet controls should be interactive without breaking layout/positioning */
+.wallet-adapter-button,
+.wallet-adapter-dropdown,
+.wallet-adapter-dropdown-list,
+.wallet-adapter-dropdown-list-item,
+.wallet-adapter-modal,
+.wallet-adapter-modal-container,
+.wallet-adapter-modal-wrapper {
+  pointer-events: auto !important;
+  user-select: auto !important;
+}
+
+/* Override any disabled states */
+.wallet-adapter-button[disabled] {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure trigger does not create conflicting stacking contexts */
+.wallet-adapter-button-trigger {
+  position: static !important;
+}
+
+/* Control dropdown visibility properly */
+.wallet-adapter-dropdown-list {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.wallet-adapter-dropdown-list:not([aria-expanded="true"]) {
+  display: none !important;
+}
+
+.wallet-adapter-dropdown-list[aria-expanded="true"] {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* The default wallet adapter styles are purple; override to match site theme */
+.wallet-adapter-button {
+  /* Dark, subtle styling for wallet button */
+  background: var(--input) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  box-shadow: none !important;
+}
+
+.wallet-adapter-button:hover:not([disabled]) {
+  background: color-mix(in oklch, var(--input), white 6%) !important;
+}
+
+/* Hide provider logo (e.g., Phantom) from the button */
+.wallet-adapter-button-start-icon {
+  display: none !important;
+}
+.wallet-adapter-button-end-icon {
+  filter: none !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 10%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 30%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 40%);
+}
+
+/* Custom button animations */
+.btn-glow:hover {
+  box-shadow: 0 0 15px currentColor;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Racing lane indicators */
+.lane-indicator {
+  position: relative;
+}
+
+.lane-indicator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, currentColor, transparent);
+  border-radius: 2px;
+}
+
+/* Bet slip glow effect */
+.bet-slip-glow {
+  position: relative;
+}
+
+.bet-slip-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, transparent, hsl(var(--primary)), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bet-slip-glow:hover::before {
+  opacity: 0.3;
+}
+
+/* Jackpot sparkle effect */
+@keyframes sparkle-float {
+  0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translate(8px, -12px) scale(1.1); opacity: 0.9; }
+  90% { opacity: 1; }
+  100% { transform: translate(16px, -24px) scale(0.8); opacity: 0; }
+}
+
+.sparkle-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,215,0,0.9) 60%, rgba(255,215,0,0) 70%);
+  filter: drop-shadow(0 0 6px rgba(255,215,0,0.8));
+  animation: sparkle-float 1.8s ease-in-out infinite;
+}
+
+.sparkle.s1 { left: 8%;  bottom: 10%; animation-delay: 0s; }
+.sparkle.s2 { left: 24%; bottom: 18%; animation-delay: 0.3s; }
+.sparkle.s3 { left: 42%; bottom: 8%;  animation-delay: 0.6s; }
+.sparkle.s4 { left: 61%; bottom: 16%; animation-delay: 0.9s; }
+.sparkle.s5 { left: 78%; bottom: 12%; animation-delay: 1.2s; }
+.sparkle.s6 { left: 90%; bottom: 20%; animation-delay: 1.5s; }
+
+.jackpot-glow {
+  position: relative;
+}
+
+.jackpot-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120px 60px at top right, rgba(255,215,0,0.15), transparent 70%),
+              radial-gradient(160px 80px at bottom left, rgba(255,105,180,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* Ensure the wallet modal renders above any other layers */
+#wallet-adapter-modal, .wallet-adapter-modal-root { z-index: 9999 !important; }
+
+/* Utility: hide scrollbars while preserving scroll behavior */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and old Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important; /* Safari/Chrome */
+}

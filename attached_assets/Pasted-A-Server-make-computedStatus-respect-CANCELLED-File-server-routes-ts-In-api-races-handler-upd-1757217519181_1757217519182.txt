@@ -1,0 +1,133 @@
+A) Server: make computedStatus respect CANCELLED
+
+File: server/routes.ts
+
+In /api/races handler, update computeStatus:
+function computeStatus(r: any) {
+  // Highest precedence first
+  if (r.status === 'CANCELLED') return 'CANCELLED';
+  if (r.status === 'SETTLED') return 'SETTLED';
+
+  const lockedTs = Number(r.lockedTs || 0);
+  if (lockedTs) {
+    return now >= lockedTs + PROGRESS_MS ? 'IN_PROGRESS' /* window elapsed; shown as in-progress until settled */ : 'LOCKED';
+  }
+  return (now >= r.startTs + OPEN_MS) ? 'LOCKED' : 'OPEN';
+}
+
+
+(Note: previously there was no CANCELLED branch. Also keep IN_PROGRESS here; settlement flips the real status to SETTLED.)
+
+In /api/races/:raceId handler, add the same precedence:
+const raceWithTotals = {
+  ...race,
+  totalPot: totalPot.toString(),
+  betCount: bets.length,
+  computedStatus: (() => {
+    if (race.status === 'CANCELLED') return 'CANCELLED';
+    if (race.status === 'SETTLED') return 'SETTLED';
+    if (race.lockedTs) return now >= Number(race.lockedTs) + PROGRESS_MS ? 'IN_PROGRESS' : 'LOCKED';
+    return now >= race.startTs + OPEN_MS ? 'LOCKED' : 'OPEN';
+  })()
+};
+
+B) Server: always lock, even if price API fails
+
+File: server/sse.ts
+
+1) In startRaceProgression(...), inside the timer that closes betting:
+
+Replace the price-snapshot try { ... } catch { ... } with a graceful fallback that still locks:
+
+const snapshotTs = Date.now();
+let currentPrices: Array<{ mint: string; price: number }> = [];
+
+try {
+  const { getGeckoTerminalPrices } = await import('./runners');
+  const raceRunners = race.runners.map((runner: any) => ({
+    mint: runner.mint,
+    poolAddress: runner.poolAddress
+  }));
+  currentPrices = await getGeckoTerminalPrices(raceRunners);
+} catch (err) {
+  console.warn(`⚠️ Price snapshot failed for ${race.id}, locking with cached prices:`, err);
+  currentPrices = []; // fallback below will handle it
+}
+
+const updatedRunners = race.runners.map((runner: any) => {
+  const p = Number(
+    currentPrices.find(p => p.mint === runner.mint)?.price ??
+    runner.currentPrice ??
+    runner.initialPrice ??
+    0
+  );
+  return {
+    ...runner,
+    initialPrice: p,
+    initialPriceUsd: p,
+    initialPriceTs: snapshotTs
+  };
+});
+
+const lockedRace = {
+  ...race,
+  status: 'LOCKED' as const,
+  lockedTs: snapshotTs,
+  runners: updatedRunners
+};
+sqliteDb.updateRace(lockedRace);
+raceEvents.emit('race_locked', lockedRace);
+
+// keep “createNewRaceIfNeeded()” right after this
+// then schedule IN_PROGRESS in ~2s and settlement after PROGRESS_MS
+
+
+(Key change: don’t leave the race in OPEN if the price call fails.)
+
+2) In forceRaceToLocked(raceId), make the same fallback:
+
+Wrap the getGeckoTerminalPrices call in try/catch, and when building updatedRunners, use the same fallback for p:
+
+let currentPrices: Array<{ mint: string; price: number }> = [];
+try {
+  const { getGeckoTerminalPrices } = await import('./runners');
+  const raceRunners = race.runners.map((runner: any) => ({ mint: runner.mint, poolAddress: runner.poolAddress }));
+  currentPrices = await getGeckoTerminalPrices(raceRunners);
+} catch (err) {
+  console.warn(`⚠️ [FORCE] snapshot failed for ${raceId}, using cached prices:`, err);
+}
+
+const p = Number(
+  currentPrices.find(p => p.mint === runner.mint)?.price ??
+  runner.currentPrice ??
+  runner.initialPrice ??
+  0
+);
+
+
+Also do not rethrow if the snapshot fails—still persist the LOCKED transition and continue to schedule IN_PROGRESS and settle.
+
+C) Client (tiny safety)
+
+You already did most of this, but one extra guard keeps the lobby clean even before the server change rolls out:
+
+File: client/src/pages/Lobby.tsx
+
+In the “open” filter, exclude cancelled explicitly:
+
+const openRaces = sortedRaces.filter(race => {
+  const s = race.computedStatus ?? race.status;
+  if (race.status === 'CANCELLED') return false;
+  return s === 'OPEN';
+});
+
+
+(You already use computedStatus for in-progress; this just avoids the CANCELLED leakage until the server patch is live everywhere.)
+
+D) After deploy, clean state and reseed
+
+Hit your admin “clear races” endpoint (the one that cancels non-settled and resets).
+
+Confirm /api/races returns: 1 OPEN + 2 future (none CANCELLED in the “open” lane).
+
+Let the active race cross the start → 30m: it should lock even if the price API is down, go IN_PROGRESS, then SETTLED. The UI will reflect each phase via SSE + computedStatus.

@@ -1,0 +1,137 @@
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ git pull origin main
+Username for 'https://github.com': thepaypay420
+Password for 'https://thepaypay420@github.com':
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 7 (delta 3), reused 7 (delta 3), pack-reused 0 (from 0)
+Unpacking objects: 100% (7/7), 1.38 KiB | 176.00 KiB/s, done.
+From https://github.com/thepaypay420/PumpRacer
+ * branch            main       -> FETCH_HEAD
+   e164d01..ae9b8df  main       -> origin/main
+Updating e164d01..ae9b8df
+Fast-forward
+ .replit                      |  4 ++++
+ programs/raceswap/src/lib.rs | 30 +++++++++++++++++++++---------
+ 2 files changed, 25 insertions(+), 9 deletions(-)
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ sed -n '488,492p' programs/raceswap/src/lib.rs
+    pub treasury_wallet: UncheckedAccount<'info>,
+
+    #[account(mut)]
+    pub treasury_fee_destination: SystemAccount<'info>,
+
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ anchor build --program-name raceswap
+WARNING: `anchor-lang` version(0.30.1) and the current CLI version(0.32.1) don't match.
+
+        This can lead to unwanted behavior. To use the same CLI version, add:
+
+        [toolchain]
+        anchor_version = "0.30.1"
+
+        to Anchor.toml
+
+WARNING: Adding `solana-program` as a separate dependency might cause conflicts.
+To solve, remove the `solana-program` dependency and use the exported crate from `anchor-lang`.
+`use solana_program` becomes `use anchor_lang::solana_program`.
+Program name: `raceswap`
+
+   Compiling raceswap v0.1.0 (/home/thepaypay/PumpRacer/programs/raceswap)
+warning: unexpected `cfg` condition value: `custom-heap`
+  --> programs/raceswap/src/lib.rs:17:1
+   |
+17 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-heap` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+   = note: this warning originates in the macro `$crate::custom_heap_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `custom-panic`
+  --> programs/raceswap/src/lib.rs:17:1
+   |
+17 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-panic` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the macro `$crate::custom_panic_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused import: `invoke_signed`
+ --> programs/raceswap/src/lib.rs:4:23
+  |
+4 |     program::{invoke, invoke_signed},
+  |                       ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap/src/lib.rs:17:1
+   |
+17 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap/src/lib.rs:17:1
+   |
+17 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+   --> programs/raceswap/src/lib.rs:426:10
+    |
+426 | #[derive(Accounts)]
+    |          ^^^^^^^^
+    |
+    = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+    = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+   --> programs/raceswap/src/lib.rs:441:10
+    |
+441 | #[derive(Accounts)]
+    |          ^^^^^^^^
+    |
+    = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+    = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+   --> programs/raceswap/src/lib.rs:452:10
+    |
+452 | #[derive(Accounts)]
+    |          ^^^^^^^^
+    |
+    = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+    = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: `raceswap` (lib) generated 13 warnings (5 duplicates) (run `cargo fix --lib -p raceswap` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 3.26s
+   Compiling raceswap v0.1.0 (/home/thepaypay/PumpRacer/programs/raceswap)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.91s
+     Running unittests src/lib.rs (/home/thepaypay/PumpRacer/target/debug/deps/raceswap-0fee79b45808dd5d)
+     Running tests/encoder.rs (/home/thepaypay/PumpRacer/target/debug/deps/encoder-9e3972433d0ad21a)
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ solana program deploy target/deploy/raceswap.so --program-id Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk
+Blockhash expired. 4 retries remaining
+Program Id: Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk
+
+Signature: 5gQiHVtH5ujSxZks76wCnu54khNRNJqU2EV9PhaFC1dqzhLF92s6hEEgWX8tqCknKNeAk2XAqVQty4p69m4tvBFN
+
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$

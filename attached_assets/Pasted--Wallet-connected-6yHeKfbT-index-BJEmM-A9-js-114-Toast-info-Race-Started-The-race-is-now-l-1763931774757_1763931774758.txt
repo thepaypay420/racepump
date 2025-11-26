@@ -1,0 +1,434 @@
+✅ Wallet connected: 6yHeKfbT...
+index-BJEmM_A9.js:114 Toast [info]: Race Started - The race is now live!
+index-BJEmM_A9.js:114 Toast [info]: Race Live - Price tracking started
+index-BJEmM_A9.js:329 [raceswap] buildRaceswapTransaction plan: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] Validated mainLeg accounts: Object
+index-BJEmM_A9.js:329 [raceswap] Validated reflectionLeg accounts: Object
+index-BJEmM_A9.js:329 [raceswap] Starting to parse critical addresses...
+index-BJEmM_A9.js:329 [raceswap] Wallet publicKey details: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] About to parse treasuryWallet: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] Successfully parsed treasuryWallet: Exh4ZxgzA32hnLrQq3UnqxEXMRd4vifogMc6oXn7bP4L
+index-BJEmM_A9.js:329 [raceswap] All critical addresses parsed successfully
+index-BJEmM_A9.js:329 [raceswap] Setting Compute Unit Limit: 1400000
+index-BJEmM_A9.js:329 [raceswap] Setting Compute Unit Price: 71428
+index-BJEmM_A9.js:329 [raceswap] Starting ATA creation process...
+index-BJEmM_A9.js:329 [raceswap] Resolving token program IDs for involved mints...
+index-BJEmM_A9.js:329 [raceswap] Computing ATA addresses...
+index-BJEmM_A9.js:329 [raceswap] All ATA addresses computed
+index-BJEmM_A9.js:329 [raceswap] Batch-checking ATA existence...
+index-BJEmM_A9.js:329 [raceswap] Creating userInputAta (doesn't exist, token program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA)...
+index-BJEmM_A9.js:329 [raceswap] userMainDestination already exists, skipping creation
+index-BJEmM_A9.js:329 [raceswap] Creating swapAuthorityAta (doesn't exist, token program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA)...
+index-BJEmM_A9.js:329 [raceswap] Creating userReflectionDestination (doesn't exist, token program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA)...
+index-BJEmM_A9.js:329 [raceswap] ATA check complete: 3 creation instruction(s) added, 1 already existed
+index-BJEmM_A9.js:329 [raceswap] Processing Jupiter program ID...
+index-BJEmM_A9.js:329 [raceswap] Checking jupiterProgramId in plan: Object
+index-BJEmM_A9.js:329 [raceswap] Attempting to parse jupiterProgramId: JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] Successfully parsed jupiterProgramId
+index-BJEmM_A9.js:329 [raceswap] Jupiter program ID set: JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4
+index-BJEmM_A9.js:329 [raceswap] Validating plan values for BN creation...
+index-BJEmM_A9.js:329 [raceswap] Plan values validated
+index-BJEmM_A9.js:329 [raceswap] Creating BN objects...
+index-BJEmM_A9.js:329 [raceswap] Creating totalInputAmountBN from: 100000000
+index-BJEmM_A9.js:329 [raceswap] totalInputAmountBN created successfully: 100000000
+index-BJEmM_A9.js:329 [raceswap] Creating minMainOutBN from: 625863532054
+index-BJEmM_A9.js:329 [raceswap] minMainOutBN created successfully: 625863532054
+index-BJEmM_A9.js:329 [raceswap] Creating minReflectionOutBN from: 1567221918
+index-BJEmM_A9.js:329 [raceswap] minReflectionOutBN created successfully: 1567221918
+index-BJEmM_A9.js:329 [raceswap] All BN objects created successfully
+index-BJEmM_A9.js:329 [raceswap] Wrapping SOL to WSOL: 100000000 lamports
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] accountMeta built: Object
+index-BJEmM_A9.js:329 [raceswap] Created mainLeg AccountMetas: Object
+index-BJEmM_A9.js:329 [raceswap] Created reflectionLeg AccountMetas: Object
+index-BJEmM_A9.js:329 [raceswap] Encoding legs...
+index-BJEmM_A9.js:329 [raceswap] Encoding mainLeg...
+index-BJEmM_A9.js:329 [raceswap] mainLeg encoded successfully
+index-BJEmM_A9.js:329 [raceswap] Encoding reflectionLeg...
+index-BJEmM_A9.js:329 [raceswap] reflectionLeg encoded: success
+index-BJEmM_A9.js:329 [raceswap] Processing remainingAccounts: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] remainingAccounts processing complete: Object
+index-BJEmM_A9.js:329 [raceswap] Validating all accounts before instruction creation...
+index-BJEmM_A9.js:329 [raceswap] All accounts validated successfully
+index-BJEmM_A9.js:329 [raceswap] Building execute_raceswap instruction via manual encoder
+index-BJEmM_A9.js:329 [raceswap] Manual encoding of execute_raceswap data...
+index-BJEmM_A9.js:329 [raceswap] Built instruction data (manual): Object
+index-BJEmM_A9.js:329 [raceswap] Account list built: 13 base + 70 remaining = 83 total
+index-BJEmM_A9.js:329 [raceswap] Final account breakdown:
+index-BJEmM_A9.js:329   - Total accounts: 83
+index-BJEmM_A9.js:329   - Writable accounts: 36
+index-BJEmM_A9.js:329   - Signer accounts: 2
+index-BJEmM_A9.js:329   - Instruction data size: 221 bytes
+index-BJEmM_A9.js:329 [raceswap] execute_raceswap instruction built successfully (manual encoder)
+index-BJEmM_A9.js:329 [raceswap] Transaction instruction breakdown:
+index-BJEmM_A9.js:329   - Instruction 0: 0 accounts, 5 bytes data
+index-BJEmM_A9.js:329   - Instruction 1: 0 accounts, 9 bytes data
+index-BJEmM_A9.js:329   - Instruction 2: 6 accounts, 0 bytes data
+index-BJEmM_A9.js:329   - Instruction 3: 6 accounts, 0 bytes data
+index-BJEmM_A9.js:329   - Instruction 4: 6 accounts, 1 bytes data
+index-BJEmM_A9.js:329   - Instruction 5: 2 accounts, 12 bytes data
+index-BJEmM_A9.js:329   - Instruction 6: 1 accounts, 1 bytes data
+index-BJEmM_A9.js:329   - Instruction 7: 83 accounts, 221 bytes data
+index-BJEmM_A9.js:329   - Total: 8 instructions, 104 accounts, 249 bytes data
+index-BJEmM_A9.js:329 [raceswap] Validating instructions array before transaction creation: Object
+index-BJEmM_A9.js:329 [raceswap] About to validate transaction keys, instruction count: 8
+index-BJEmM_A9.js:329 [raceswap] validateTxKeys: pre-transaction instructions = 8
+index-BJEmM_A9.js:329 [raceswap] ix[0] programId = ComputeBudget111111111111111111111111111111
+index-BJEmM_A9.js:329 [raceswap] ix[1] programId = ComputeBudget111111111111111111111111111111
+index-BJEmM_A9.js:329 [raceswap] ix[2] programId = ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[0] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[1] DBf2bvYdmT8PSCNp5eBBW6EDzCrWMyHAWJfG4ZheobyK signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[2] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[3] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[4] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[2] key[5] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[3] programId = ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[0] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[1] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[2] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[3] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[4] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[3] key[5] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[4] programId = ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[0] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[1] 9uL6VyJWvFzZPNdDsdoTuzjiio95NvQHcPBQdGZPnKPV signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[2] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[3] DYnv4CjMjPgh2RnLU9YPph6HKn6RJiH63c21JuAJpump signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[4] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[4] key[5] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[5] programId = 11111111111111111111111111111111
+index-BJEmM_A9.js:329 [raceswap] ix[5] key[0] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[5] key[1] DBf2bvYdmT8PSCNp5eBBW6EDzCrWMyHAWJfG4ZheobyK signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[6] programId = TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+index-BJEmM_A9.js:329 [raceswap] ix[6] key[0] DBf2bvYdmT8PSCNp5eBBW6EDzCrWMyHAWJfG4ZheobyK signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] programId = Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[0] EaD9EQSfe7Lnz5c12vaEasmrje7xtML9vUEJsCYuLpHP signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[1] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[2] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[3] DBf2bvYdmT8PSCNp5eBBW6EDzCrWMyHAWJfG4ZheobyK signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[4] HL5cqX9spHY5STSAjuhFFNzTEGmnfZiMGXcxRCr3QPbu signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[5] 9uL6VyJWvFzZPNdDsdoTuzjiio95NvQHcPBQdGZPnKPV signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[6] Exh4ZxgzA32hnLrQq3UnqxEXMRd4vifogMc6oXn7bP4L signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[7] 6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u signer = true writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[8] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[9] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[10] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[11] JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[12] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[13] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[14] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[15] ETJoxLjckyGNcGY1udHczF1ra5uAzuQxzKQJ56NGnt49 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[16] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[17] DYnv4CjMjPgh2RnLU9YPph6HKn6RJiH63c21JuAJpump signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[18] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[19] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[20] JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[21] D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[22] JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[23] pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[24] 3UDRUc4RHo7o9nYcuNWZvkckPT48TiGZd4tEm6tqx33m signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[25] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[26] ADyA8hdefvWN2dbGGWFotbzWxrAvLW83WG6QCVXvJKqw signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[27] DYnv4CjMjPgh2RnLU9YPph6HKn6RJiH63c21JuAJpump signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[28] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[29] ETJoxLjckyGNcGY1udHczF1ra5uAzuQxzKQJ56NGnt49 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[30] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[31] ForBkkET9frjn5BdCEjfL1NZLGTvqY5bawJhnETtwa6Y signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[32] 5bYE68D8oqQBkF4qkH4UtQXCVkzoMvhoR5RcvfLYikyY signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[33] 7VtfL8fvgNfhz17qKRMjzQEXgbdpnHHHQRh54R9jP2RJ signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[34] 7GFUN3bWzJMKMRZ34JLsvcqdssDbXnp589SiE33KVwcC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[35] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[36] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[37] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[38] ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[39] GS4CU59F31iL7aR2Q8zVS8DRrcRnXX1yjQ66TqNVQnaR signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[40] pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[41] FnaV7ZyAyABgdUtLFNSvkbdZbaEVxjPHWv5cb9FwhcWA signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[42] 6P3xzFnXzk2VM6GS6bGQdwzrqv2rjiZggQQT7ACnWfYo signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[43] C2aFPdENg4A2HQsmrd5rTw5TaYBX5Ku887cWjbFKtZpw signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[44] 3ChZE4gCLxoTEd5vSgkEMEuGubGvM4JBkCcsfzHzmyw9 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[45] 5PHirr8joyTMp9JMm6nW7hNDVyEYdkzDqazxPD7RaTjx signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[46] pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[47] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[48] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[49] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[50] AQGHC1iuVgr1kGW12BK21fLdJSYXTZqMyYmdPhyQ8h6T signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[51] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[52] t3DyoWzHG7kXkb5VzLnE4ryHgri9KNCv5qZuSsFpump signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[53] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[54] TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[55] JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[56] D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[57] JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[58] pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[59] 4E3RC6x3NxnvfKydwV9rc919YRCZBNMRVxmtjEFPCCy8 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[60] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[61] ADyA8hdefvWN2dbGGWFotbzWxrAvLW83WG6QCVXvJKqw signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[62] t3DyoWzHG7kXkb5VzLnE4ryHgri9KNCv5qZuSsFpump signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[63] So11111111111111111111111111111111111111112 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[64] AQGHC1iuVgr1kGW12BK21fLdJSYXTZqMyYmdPhyQ8h6T signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[65] QtfJTpj3iFnfBJCcw67w6guqXop6k7xEjJbRjLEnHyC signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[66] AYMHqdDBAZP1JbfLWeTv5bpZxvusBH9yB2AQTFMbVf92 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[67] 6AhRd24ifVR7JtkT1aGKy1wrdvx7bxeGT4SXLMpHLeu4 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[68] FWsW1xNtWscwNmKv6wVsU1iTzRN6wmmk3MjxRP5tT7hz signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[69] 7xQYoUjUJF1Kg6WVczoTAkaNhn5syQYcbvjmFrhjWpx signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[70] TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[71] TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[72] 11111111111111111111111111111111 signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[73] ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[74] GS4CU59F31iL7aR2Q8zVS8DRrcRnXX1yjQ66TqNVQnaR signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[75] pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[76] GTu6R854N3yLhA6H9KcDJiE7HiSmaD2Ctb5nJELzSaXt signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[77] GLeXepGh7GGd7QTzr2VxTKbT9LCq4wyyUi2mhTmpAqJy signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[78] C2aFPdENg4A2HQsmrd5rTw5TaYBX5Ku887cWjbFKtZpw signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[79] 3ChZE4gCLxoTEd5vSgkEMEuGubGvM4JBkCcsfzHzmyw9 signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[80] 5PHirr8joyTMp9JMm6nW7hNDVyEYdkzDqazxPD7RaTjx signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[81] pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ signer = false writable = false
+index-BJEmM_A9.js:329 [raceswap] ix[7] key[82] 8WcsJbj4ug51afSWmUmt13qEMR1XBj6M3Vwig7TNTMGh signer = false writable = true
+index-BJEmM_A9.js:329 [raceswap] Transaction validation passed successfully
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] parsePubkeyStrict success: Object
+index-BJEmM_A9.js:329 [raceswap] Lookup tables loaded: 2/2
+index-BJEmM_A9.js:329 [raceswap] Address table usage summary: Object
+index-BJEmM_A9.js:329 [raceswap] Created VersionedTransaction (v0) with 8 instructions
+index-BJEmM_A9.js:329 [raceswap] ACTUAL serialized tx size:
+index-BJEmM_A9.js:329   - Message: 1085 bytes
+index-BJEmM_A9.js:329   - Signatures: 64 bytes (1 signer)
+index-BJEmM_A9.js:329   - Total: 1149 bytes (limit: 1232 bytes, 83 bytes remaining)
+index-BJEmM_A9.js:329 [raceswap] ✓ Transaction size confirmed: 1149/1232 bytes
+index-BJEmM_A9.js:329 [raceswap] Swap error: xk: Simulation failed. 
+Message: Transaction simulation failed: Error processing Instruction 7: custom program error: 0x1789. 
+Logs: 
+[
+  "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 6238 of 1208638 compute units",
+  "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+  "Program 11111111111111111111111111111111 invoke [2]",
+  "Program 11111111111111111111111111111111 success",
+  "Program JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 invoke [2]",
+  "Program log: Instruction: RouteV2",
+  "Program JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 consumed 2967 of 1188622 compute units",
+  "Program JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4 failed: custom program error: 0x1789",
+  "Program Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk consumed 151843 of 1337498 compute units",
+  "Program Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk failed: custom program error: 0x1789"
+]. 
+Catch the `SendTransactionError` and call `getLogs()` on it for full details.
+    at w2.sendEncodedTransaction (index-BJEmM_A9.js:132:1464)
+    at async w2.sendRawTransaction (index-BJEmM_A9.js:132:974)
+    at async ie (index-BJEmM_A9.js:329:164260)

@@ -1,0 +1,77 @@
+2025-11-09 01:05:20.80
+672e533a
+User
+🎯 Settlement: About to call executeMemeReward for race race_1762674543782_0, 3 bets
+2025-11-09 01:05:20.80
+672e533a
+User
+[meme-reward] No eligible bettors (only escrow placed bets)
+2025-11-09 01:05:20.80
+672e533a
+User
+[meme-reward] No eligible bettors for meme reward
+2025-11-09 01:05:20.80
+672e533a
+User
+🎯 Settlement: executeMemeReward returned undefined (check [meme-reward] logs for reason)
+2025-11-09 01:05:20.82
+672e533a
+User
+💰 Settlement complete for race race_1762674543782_0
+2025-11-09 01:05:20.82
+672e533a
+User
+✅ Race race_1762674543782_0 settled successfully with winner index 1
+
+2025-11-09 01:05:20.84
+672e533a
+User
+📊 Current OPEN races: 3, target: 3 (no new races needed)
+2025-11-09 01:05:20.86
+672e533a
+User
+📊 Current OPEN races: 3, target: 3 (no new races needed)
+2025-11-09 01:05:20.93
+672e533a
+User
+Broadcasting event: race_settled to 1 clients
+2025-11-09 01:05:20.93
+672e533a
+User
+[telegram] race_settled received for race_1762674543782_0; enqueueing send
+2025-11-09 01:05:20.93
+672e533a
+User
+[telegram] Preparing Telegram post for race race_1762674543782_0 (winnerIndex=1)
+2025-11-09 01:05:20.93
+672e533a
+User
+📡 Emitted race_settled event for race race_1762674543782_0
+2025-11-09 01:05:20.93
+672e533a
+User
+[telegram] Video found at /home/runner/workspace/tgmsg.mp4
+2025-11-09 01:05:20.94
+672e533a
+User
+⏭️ Skipping duplicate race_settled event for race race_1762674543782_0
+2025-11-09 01:05:21.09
+672e533a
+User
+[telegram] Fetched pot for race race_1762674543782_0: 0.06 SOL from 3 bets
+2025-11-09 01:05:21.15
+672e533a
+User
+[telegram] Using script /home/runner/workspace/scripts/send_telegram_race_results.py with /home/runner/workspace/.pythonlibs/bin/python3; target group=-1002746332286
+2025-11-09 01:05:21.45
+672e533a
+User
+{"level":30,"time":1762679121452,"pid":31,"hostname":"deployments--7842697836276689137.c.replit-user-18858646-mzfzjfds","msg":"GET /api/wallet/6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u/balances 304 in 42…"}
+2025-11-09 01:05:22.66
+672e533a
+User
+⚡ DexScreener fast prices 6/6
+2025-11-09 01:05:22.68
+672e533a
+User
+Broadcasting event: race_updated to 1 clients

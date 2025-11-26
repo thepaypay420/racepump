@@ -1,0 +1,97 @@
+modules = ["nodejs-20", "web", "postgresql-16", "python-3.11", "python3"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["imagemagick", "openssl", "sqlite", "solana-cli", "rustc", "cargo", "pkg-config"]
+
+[deployment]
+deploymentTarget = "gce"
+build = ["npm", "run", "build"]
+run = ["sh", "-c", "npm run start"]
+
+# CRITICAL: Explicitly disable Replit's automatic database migration detection
+# We handle ALL database migrations in the application code itself.
+# Migrations are in: sql-scripts/ directory
+# Migration runner: scripts/sql-migrations.ts (runs at app startup)
+[deployment.databaseMigrations]
+enabled = false
+
+[env]
+PORT = "5000"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 34009
+externalPort = 3001
+
+[[ports]]
+localPort = 36149
+externalPort = 5000
+
+[[ports]]
+localPort = 36703
+externalPort = 3000
+
+[[ports]]
+localPort = 37535
+externalPort = 5173
+
+[[ports]]
+localPort = 40493
+externalPort = 8008
+
+[[ports]]
+localPort = 41863
+externalPort = 3003
+
+[[ports]]
+localPort = 42379
+externalPort = 8000
+
+[[ports]]
+localPort = 43815
+externalPort = 4200
+
+[[ports]]
+localPort = 44029
+externalPort = 3002
+
+[[ports]]
+localPort = 44927
+externalPort = 6000
+
+[[ports]]
+localPort = 45989
+externalPort = 6800
+
+[[ports]]
+localPort = 46165
+externalPort = 8080
+
+[agent]

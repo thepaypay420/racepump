@@ -1,0 +1,91 @@
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$ anchor build --program-name raceswap-v3
+`anchor` 0.30.1 is not installed with `avm`. Installing...
+
+    Updating git repository `https://github.com/coral-xyz/anchor`
+warning: skipping duplicate package `swap` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/cfo/deps/swap/programs/swap`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/zero-copy/programs/shared`
+warning: skipping duplicate package `relations-derivation` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/relations-derivation`
+warning: skipping duplicate package `docs` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/idl/programs/docs`
+warning: skipping duplicate package `shared` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/misc/programs/shared`
+warning: skipping duplicate package `external` found at `/home/thepaypay/.cargo/git/checkouts/anchor-50c4b9c8b5e0501f/e6d7daf/tests/declare-program/programs/external`
+error: binary `anchor` already exists in destination
+Add --force to overwrite
+Error: Failed to install 0.30.1, is it a valid version?
+Failed to install `anchor`: failed to install `anchor` 0.30.1 with avm, using 0.32.1 instead
+WARNING: `anchor-lang` version(0.30.1) and the current CLI version(0.32.1) don't match.
+
+        This can lead to unwanted behavior. To use the same CLI version, add:
+
+        [toolchain]
+        anchor_version = "0.30.1"
+
+        to Anchor.toml
+
+WARNING: Adding `solana-program` as a separate dependency might cause conflicts.
+To solve, remove the `solana-program` dependency and use the exported crate from `anchor-lang`.
+`use solana_program` becomes `use anchor_lang::solana_program`.
+Program name: `raceswap`
+
+   Compiling raceswap-v3 v3.0.0 (/home/thepaypay/PumpRacer/programs/raceswap-v3)
+warning: unexpected `cfg` condition value: `custom-heap`
+  --> programs/raceswap-v3/src/lib.rs:23:1
+   |
+23 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-heap` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+   = note: this warning originates in the macro `$crate::custom_heap_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `custom-panic`
+  --> programs/raceswap-v3/src/lib.rs:23:1
+   |
+23 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `custom-panic` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the macro `$crate::custom_panic_default` which comes from the expansion of the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap-v3/src/lib.rs:23:1
+   |
+23 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap-v3/src/lib.rs:23:1
+   |
+23 | #[program]
+   | ^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `anchor-debug`
+  --> programs/raceswap-v3/src/lib.rs:97:10
+   |
+97 | #[derive(Accounts)]
+   |          ^^^^^^^^
+   |
+   = note: expected values for `feature` are: `cpi`, `default`, `idl-build`, `no-entrypoint`, `no-idl`, and `no-log-ix-name`
+   = help: consider adding `anchor-debug` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the derive macro `Accounts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: `raceswap-v3` (lib) generated 10 warnings (5 duplicates)
+    Finished `release` profile [optimized] target(s) in 1.64s
+   Compiling raceswap-v3 v3.0.0 (/home/thepaypay/PumpRacer/programs/raceswap-v3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.96s
+     Running unittests src/lib.rs (/home/thepaypay/PumpRacer/target/debug/deps/raceswap_v3-6ccb852d0aa2ceae)
+thepaypay@DESKTOP-HUJV8K0:~/PumpRacer$

@@ -1,0 +1,150 @@
+Replit Agent Prompt — Telegram Cadence (More Frequent Referrals/Explainers)
+
+Post target: -1002746332286
+News source: -1002402767536
+Runtime: Python + Telethon (existing)
+Assets: racenewsalert.png, racenotify1.png, racenotify1.mp4
+Storage: Replit chooses (KV/file/DB). No SQL requirements.
+
+Core Rules (unchanged for results/news)
+
+Race results: Post instantly, unlimited, 24/7. Never blocked by any rule.
+
+News: Post every new unique headline immediately. Unlimited. No spacing/caps. 14-day de-dupe.
+
+Updated Frequency & Limits
+
+Min spacing between non-result posts (referral/explainer only): 30 minutes (was 45).
+
+Daily non-result cap (referral + explainer only): 12/day (was 5).
+(News does not count toward caps. Race results never count.)
+
+Schedules & Cooldowns (more frequent)
+🏁 Referral (now 3×/day)
+
+CRON: 08:30, 14:30, 20:30 PT (30 8,14,20 * * *)
+
+Cooldown: 6 hours (prevents accidental doubles outside scheduled times)
+
+Spacing: obey 30 min since last non-result
+
+Caption (unchanged):
+
+🏁 RACEPUMP REFERRALS
+
+Invite friends → you both get a 5% fee rebate.
+Earn a 60% commission on their trading fees, including their referrals.
+
+Current levels:
+• L1: 30% • L2: 6% • L3: 2% of referral pool (50% of rake)
+• Rebate: 5% of rake
+
+Join here:
+https://racepump.fun/referrals
+
+
+Attach: racenotify1.png
+
+🏎️ Explainer (now 2×/day)
+
+CRON: 11:15, 18:15 PT (15 11,18 * * *)
+
+Cooldown: 8 hours
+
+Spacing: obey 30 min since last non-result
+
+Caption (unchanged):
+
+🏎️ WELCOME TO PUMP RACERS
+
+A live prediction market for newly launched Pump.fun meme coins.
+Bet on which coins will gain the most over a 20-minute window.
+Winners split the prize pool based on real market performance.
+
+Play now:
+https://racepump.fun/
+
+Follow updates:
+https://x.com/racepumpfun
+
+
+Attach: racenotify1.mp4
+
+Config (update your config.yaml)
+timezone: America/Los_Angeles
+target_group_id: -1002746332286
+news_source_id: -1002402767536
+assets:
+  news_image: racenewsalert.png
+  referral_image: racenotify1.png
+  explainer_video: racenotify1.mp4
+
+limits:
+  min_spacing_minutes: 30              # non-result (referral/explainer) only
+  daily_nonresult_cap: 12              # referral + explainer only
+  news_fresh_hours: 12
+  referral_cooldown_hours: 6
+  explainer_cooldown_hours: 8
+  dedupe_ttl_days: 14
+
+schedules:
+  # News: listener preferred; poll only if needed
+  news_poll_cron: "*/2 * * * *"
+
+  # Referral: 08:30, 14:30, 20:30 PT daily
+  referral_cron: "30 8,14,20 * * *"
+
+  # Explainer: 11:15, 18:15 PT daily
+  explainer_cron: "15 11,18 * * *"
+
+State You Must Persist (storage-agnostic)
+
+Deduped news keys (14 days)
+
+Last post time by kind (referral, explainer)
+
+Last non-result post time (for 30-min spacing)
+
+Daily non-result count (reset at local midnight PT)
+
+Required helpers (implement with KV/file/DB—your choice):
+
+has_news_been_posted(key, days) / mark_news_posted(key, now)
+
+get_last_post_time(kind) / set_last_post_time(kind, ts)
+
+get_last_nonresult_post_time() / set_last_nonresult_post_time(ts)
+
+get_nonresult_count_today() / increment_nonresult_count(today) / reset_if_new_day()
+
+Important:
+
+News posts do not update spacing or daily counters.
+
+Race results never touch spacing/caps either.
+
+Logic Guardrails
+
+If two scheduled jobs collide (e.g., after downtime), the 30-min spacing ensures they don’t stack.
+
+If daily non-result count hits 12, skip further referral/explainer that day.
+
+Keep logging skip reasons: cooldown, spacing, daily_cap, dedupe, stale_news.
+
+Escape HTML for news headlines; if any asset missing, skip and log.
+
+Acceptance Checklist
+
+Referral posts appear 3×/day unless blocked by:
+
+cooldown < 6h, spacing < 30m, or daily cap ≥ 12.
+
+Explainer posts appear 2×/day unless blocked by:
+
+cooldown < 8h, spacing < 30m, or daily cap ≥ 12.
+
+News posts: every unique headline posts immediately, unlimited, 24/7.
+
+Race results: still unlimited and unaffected.
+
+State persists across restarts (dedupe/cooldowns/counters intact).

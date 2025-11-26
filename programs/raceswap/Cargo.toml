@@ -1,0 +1,26 @@
+[package]
+name = "raceswap"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Anchor program orchestrating RACESwap executions"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = { workspace = true }
+anchor-spl = { workspace = true }
+solana-program = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+base64 = "0.21"

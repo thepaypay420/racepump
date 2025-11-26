@@ -1,0 +1,25 @@
+[toolchain]
+anchor_version = "0.30.1"
+
+[programs.localnet]
+raceswap = "Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk"
+
+[programs.devnet]
+raceswap = "Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk"
+
+[programs.mainnet]
+raceswap = "Cy63SzwBBCP5ywaByjUrLuUXQ4pXP9nR7e7kdQqp5uLk"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[workspace]
+members = [
+  "programs/raceswap",
+  "programs/raceswap-v3"
+]
+types = "shared/idl"
+
+[scripts]
+test = "anchor test"

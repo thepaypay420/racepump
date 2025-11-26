@@ -1,0 +1,136 @@
+1) client/src/lib/api.ts — add a resilient SSE helper
+
+Add this near your existing createSSEConnection (or replace it if you want). Keep both exports if other code still imports the old one.
+
+// Resilient SSE with auto-retry + heartbeat check
+export function connectSSEWithRetry(
+  url: string,
+  onMessage: (payload: any) => void,
+  opts?: { initialBackoffMs?: number; maxBackoffMs?: number }
+) {
+  const initial = opts?.initialBackoffMs ?? 1000;
+  const ceiling = opts?.maxBackoffMs ?? 30000;
+
+  let es: EventSource | null = null;
+  let backoff = initial;
+  let lastPing = Date.now();
+  let closed = false;
+
+  const open = () => {
+    if (closed) return;
+    try { es?.close(); } catch {}
+    es = new EventSource(url, { withCredentials: false });
+
+    es.onmessage = (ev) => {
+      try {
+        const data = JSON.parse(ev.data);
+        if (data?.type === 'ping') {
+          lastPing = Date.now();
+          backoff = initial; // healthy again → reset backoff
+        } else {
+          onMessage(data);
+        }
+      } catch (e) {
+        console.warn('SSE parse error', e);
+      }
+    };
+
+    es.onerror = () => {
+      try { es?.close(); } catch {}
+      // exponential backoff + jitter
+      const delay = Math.min(backoff, ceiling) + Math.floor(Math.random() * 300);
+      setTimeout(open, delay);
+      backoff = Math.min(backoff * 2, ceiling);
+    };
+  };
+
+  // Heartbeat watchdog: if no ping for 45s, force reconnect
+  const hb = setInterval(() => {
+    if (closed) return;
+    if (Date.now() - lastPing > 45_000) {
+      try { es?.close(); } catch {}
+      open();
+    }
+  }, 10_000);
+
+  // Handle online/offline and tab focus
+  const onOnline = () => { try { es?.close(); } catch {}; open(); };
+  window.addEventListener('online', onOnline);
+  window.addEventListener('focus', onOnline);
+
+  // Start
+  open();
+
+  return {
+    close() {
+      closed = true;
+      try { es?.close(); } catch {}
+      clearInterval(hb);
+      window.removeEventListener('online', onOnline);
+      window.removeEventListener('focus', onOnline);
+    }
+  };
+}
+
+2) client/src/App.tsx — use the resilient connector
+
+Replace the simple new EventSource wiring with the retry helper:
+
+import { connectSSEWithRetry } from '@/lib/api';
+import { handleSSEMessage } from '@/lib/store';
+
+useEffect(() => {
+  const conn = connectSSEWithRetry('/api/events', (payload) => {
+    handleSSEMessage(payload);
+  });
+  return () => conn.close();
+}, []);
+
+3) client/src/lib/queryClient.ts — refetch on focus/reconnect
+
+Make React-Query aggressively refresh when the tab resumes or network returns:
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: true,     // was often false
+      refetchOnReconnect: true,       // refresh after network drop
+      staleTime: 0,                   // let invalidations always refetch
+      gcTime: 5 * 60 * 1000,
+      retry: 2,
+    },
+  },
+});
+
+
+(If you prefer a non-zero staleTime, keep it small (e.g., 2-5s). With SSE invalidations, 0 is usually fine.)
+
+4) (Optional) tiny polling backstop for the hot views
+
+In case a user opens a tab before SSE connects, add a light interval:
+
+client/src/pages/Lobby.tsx — in the useQuery(['races'], getRaces, { … }) options add:
+
+refetchInterval: 5000,
+
+
+client/src/pages/LiveRace.tsx — for the race & progress queries:
+
+const status = raceData?.computedStatus ?? raceData?.status;
+enabled: !!raceId && (status === 'LOCKED' || status === 'IN_PROGRESS'),
+refetchInterval: 5000,
+
+
+You already wired computedStatus usage elsewhere — keep that.
+
+5) Server-side sanity (you already have most)
+
+Your SSE endpoint does send a ping every 30s — perfect.
+
+Keep sending { type: 'race_created' | 'race_locked' | 'race_live' | 'race_settled' | 'race_updated' } with \n\n framing.
+
+Make sure CANCELLED is filtered out of “open” lists (you already added precedence in computedStatus).
+
+Why this fixes the “refresh to see changes”
+
+When the tab sleeps or network blips, the raw EventSource silently dies. The retry wrapper + heartbeat forces reconnection, and with your existing query invalidations on race_* events, the UI will immediately refetch and re-render without manual refresh.

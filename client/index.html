@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>RacePump - Meme Coin Price Prediction Market</title>
+    <meta name="description" content="Advanced meme coin prediction markets with institutional-grade price analytics. Leverage real-time GeckoTerminal API data to predict Pump.fun token performance and maximize returns through strategic SPL token positioning." />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PumpBets - Advanced Meme Coin Prediction Markets" />
+    <meta property="og:description" content="Professional-grade prediction markets for Pump.fun tokens. Leverage real-time price analytics and GeckoTerminal API data to gain a competitive edge in meme coin trading." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content="https://racepump.fun" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PumpBets - Advanced Meme Coin Prediction Markets" />
+    <meta name="twitter:description" content="Professional-grade prediction markets for Pump.fun tokens. Leverage real-time price analytics to gain a competitive edge in meme coin trading." />
+    <meta name="twitter:image" content="/og-image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/favicon-48x48.png">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Prevent MetaMask conflicts with Solana wallets
+      (function() {
+        const g = window;
+        if (!g.global) g.global = g;
+        if (!g.process) g.process = { env: {} };
+        
+        // Buffer polyfill for browser compatibility with Solana libraries
+        if (!g.Buffer) {
+          g.Buffer = {
+            from: function(str, encoding) {
+              if (typeof str === 'string') {
+                return new TextEncoder().encode(str);
+              }
+              return new Uint8Array(str);
+            },
+            alloc: function(size) {
+              return new Uint8Array(size);
+            },
+            isBuffer: function(obj) {
+              return obj instanceof Uint8Array;
+            }
+          };
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>

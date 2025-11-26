@@ -1,0 +1,134 @@
+PROJECT: PumpRacerDapp — “% at lock must be 0” baseline fix
+
+Goal: When a race transitions OPEN → LOCKED, the leader should start at 0.0% because the “initial” price is the snapshot taken at lock time. Fix all places where we read/compute % off a stale baseline (creation-time or cached).
+
+1) Server: lock flow must snapshot & persist before broadcast
+
+Files likely: server/admin.ts (or server/races.ts), server/sse.ts, server/db.ts
+
+Create a dedicated helper:
+
+// server/prices.ts or similar
+export async function snapshotInitialPricesForRace(race: Race): Promise<Race> {
+  const live = await getLivePricesForRunners(race.runners); // use existing live price util
+  race.runners = race.runners.map(r => ({
+    ...r,
+    initialPrice: live[r.mint] ?? 0,
+    initialPriceTs: Date.now(),
+  }));
+  return race;
+}
+
+
+In the function that handles LOCK (e.g., handleLockRace(raceId)), enforce this exact order:
+
+// 1) Load race, ensure status === 'OPEN'
+const race = await db.getRace(raceId);
+if (race.status !== 'OPEN') throw new Error('Only OPEN can be LOCKED');
+
+// 2) Take baseline snapshot (await it!)
+await snapshotInitialPricesForRace(race);
+
+// 3) Flip status and timestamps
+race.status = 'LOCKED';
+race.lockedTs = Date.now();
+
+// 4) Persist BEFORE broadcasting
+await db.saveRace(race);
+
+// 5) Re-load the race from DB to ensure we broadcast what’s persisted
+const fresh = await db.getRace(raceId);
+
+// 6) Now broadcast/update subscribers
+await broadcaster.emitRaceUpdate(fresh);
+
+
+Remove any code that:
+
+Sets winnerIndex at lock time (must not happen).
+
+Broadcasts LOCKED before calling snapshotInitialPricesForRace and saving.
+
+If sse.ts keeps an in-memory initialPrices cache, ensure it is reset on LOCK:
+
+initialPricesCache.delete(race.id); // before lock
+// after snapshot & persist:
+initialPricesCache.set(race.id, fresh.runners.map(r => r.initialPrice));
+
+2) Server: settlement & leader computation must use the locked baseline
+
+Files likely: server/sse.ts (poll loop / leader calc), server/settlement.ts
+
+Wherever % change is computed, always use:
+
+const pct = (currPrice - initialPrice) / initialPrice; // guard initialPrice<=0 → 0
+
+
+Do not use creation-time fields (createdPrice, openingPrice, etc.). If such fields exist, replace references with runner.initialPrice.
+
+Add a guard at lock: if any initialPrice <= 0, retry the snapshot once; if still 0, set it to currPrice just fetched so % starts at 0.
+
+3) Frontend: reset client baseline & UI when status → LOCKED
+
+Files likely: web/src/components/RaceCard*.tsx, store/racesSlice.ts, selectors.ts
+
+On receiving a race update where prev.status === 'OPEN' && next.status === 'LOCKED':
+
+Set the client baseline for each runner to race.runners[i].initialPrice.
+
+Clear any pre-lock deltas (don’t carry over creation-time %).
+
+Display % as:
+
+const pct = initialPrice > 0 ? (latestPrice - initialPrice) / initialPrice : 0;
+
+
+If the UI computed the leader from a field like runner.openingPrice, change it to runner.initialPrice.
+
+If the UI was computing % locally before the server persisted the snapshot, make it wait for the next race payload after lock (the one containing initialPriceTs) before showing deltas; until then, display “0.0%”.
+
+4) Logging to verify the fix
+
+On lock: log one line including race id, lockedTs, and each runner’s initialPrice.
+
+In the first poll after lock: log one line with currentPrice and computed %; it should be 0.000… (or very close if prices are floats) for all runners.
+
+Example log:
+
+[lock] race=ac076f3c ... lockedTs=1736196134123 baseline={
+  SIMP: 0.001234,
+  MEME: 0.0000789,
+  ...
+}
+[poll] race=ac076f3c t=1736196139123 deltas={
+  SIMP: 0.000%,
+  MEME: 0.000%,
+  ...
+}
+
+5) Defensive fixes that often cause this bug
+
+Ensure all snapshotInitialPricesForRace calls are awaited.
+
+Ensure we persist before any SSE/broadcast.
+
+Remove any other path that sets runner.initialPrice earlier (at race creation).
+
+If initialPrice was being mutated later by the price poller, stop doing that (baseline must be immutable after LOCK).
+
+6) Minimal test
+
+Create a race with a short OPEN window (e.g., 30s) and live prices.
+
+When it flips to LOCKED, the UI “Current Leader” must show 0.0% initially.
+
+Confirm % starts changing only after subsequent polls.
+
+Deliverables
+
+Changed files list and brief diff summary.
+
+A short clip or console log from a race showing:
+OPEN → LOCKED (initial % all 0.0) → IN_PROGRESS (deltas evolve) → SETTLED
+
+Note any places where openingPrice/createdPrice were replaced by initialPrice.

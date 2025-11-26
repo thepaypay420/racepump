@@ -1,0 +1,43 @@
+name: Check Migrations
+
+on:
+  pull_request:
+    paths:
+      - 'drizzle/**'
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'drizzle/**'
+
+jobs:
+  check-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Check for destructive migrations
+        run: |
+          chmod +x scripts/check-migrations.mjs
+          node scripts/check-migrations.mjs
+        env:
+          ALLOW_DESTRUCTIVE_MIGRATIONS: '0'
+      
+      - name: Report status
+        if: success()
+        run: echo "✅ All migrations are safe to deploy"
+      
+      - name: Block deployment
+        if: failure()
+        run: |
+          echo "❌ DESTRUCTIVE MIGRATIONS DETECTED"
+          echo "⛔ This PR contains migrations that would delete data"
+          echo "⛔ Review and fix before merging"
+          exit 1

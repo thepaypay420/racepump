@@ -1,0 +1,188 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    DATABASE DRIVER MIGRATION - CHANGES SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPLETED: Database driver selection now properly separates production (Postgres)
+from development (SQLite) with no dual-storage architecture.
+
+═══════════════════════════════════════════════════════════════════════════════
+NEW FILES CREATED:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. drizzle.config.ts
+   - Drizzle Kit configuration with runtime dialect switching
+   - Uses "postgresql" dialect when DATABASE_URL is set
+   - Uses "sqlite" dialect for development
+   - Schema path: ./server/db/schema.ts
+   - Output path: ./drizzle
+
+2. server/db/schema.ts  
+   - Complete Drizzle schema definitions for both dialects
+   - Includes all tables: races, bets, treasury, user_stats, etc.
+   - Separate table definitions for SQLite and PostgreSQL
+   - Properly typed with indexes and constraints
+
+3. server/db/client.ts
+   - NEW centralized database client
+   - Runtime driver selection with clear logging
+   - Exports single `db` instance
+   - Exports `dbDriver` info for diagnostics
+   - SSL configuration for Neon
+   - Connection string masking for security
+   - Graceful shutdown handlers
+
+4. DB_DRIVER_MIGRATION_COMPLETE.md
+   - Comprehensive documentation
+   - Usage instructions
+   - Migration guide
+   - Troubleshooting tips
+
+═══════════════════════════════════════════════════════════════════════════════
+MODIFIED FILES:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. package.json
+   
+   ADDED DEPENDENCIES:
+   - drizzle-orm (production)
+   - drizzle-kit (dev)
+   
+   ADDED SCRIPTS:
+   - "db:gen": "drizzle-kit generate"
+   - "db:push:pg": "drizzle-kit push"  
+   - "db:push:sqlite": "drizzle-kit push"
+   - "db:migrate:pg": "NODE_ENV=production drizzle-kit migrate"
+   - "db:studio": "drizzle-kit studio"
+
+2. server/db.ts
+
+   KEY CHANGES:
+   
+   a) Added driver selection logic (lines 16-26):
+      const isProd = (process.env.NODE_ENV || '').toLowerCase() === 'production';
+      const forcePg = process.env.FORCE_PG === 'true';
+      const usePostgres = isProd || forcePg;
+      
+   b) Added startup logging showing selected driver
+   
+   c) Modified initializeDatabaseWithRetry() (lines 200-207):
+      - CRITICAL: Returns null in production mode
+      - Skips SQLite initialization entirely when usePostgres=true
+      - Clear warning logs
+   
+   d) Guarded SQLite table creation (line 446):
+      if (db && !usePostgres) {
+        db.exec(` ... CREATE TABLE ... `);
+      }
+   
+   e) Guarded SQLite migrations (line 639):
+      if (db && !usePostgres) {
+        try { ... ALTER TABLE ... }
+      }
+   
+   f) Added exports for driver info (lines 1979-1982):
+      export { usePostgres, isProd };
+      export { pgPool, pgReady };
+
+═══════════════════════════════════════════════════════════════════════════════
+BEHAVIOR CHANGES:
+═══════════════════════════════════════════════════════════════════════════════
+
+BEFORE:
+✗ Production always created SQLite file at /mnt/data/pump-racers.db
+✗ Postgres used as "mirror" for durability
+✗ Dual-storage architecture (complex, error-prone)
+✗ No clear indication of which backend was primary
+✗ SQLite file could grow indefinitely in production
+
+AFTER:
+✓ Production uses ONLY Postgres (no SQLite file created)
+✓ Development uses ONLY SQLite (no Postgres connection)
+✓ Clear driver selection at startup with logging
+✓ Fails fast if DATABASE_URL missing in production
+✓ SSL automatically configured for Neon
+✓ Optional FORCE_PG flag for testing Postgres locally
+
+═══════════════════════════════════════════════════════════════════════════════
+RUNTIME BEHAVIOR:
+═══════════════════════════════════════════════════════════════════════════════
+
+PRODUCTION (NODE_ENV=production):
+1. Checks for DATABASE_URL (required)
+2. Skips SQLite initialization
+3. Connects to Postgres with SSL
+4. Runs migrations via initPostgres()
+5. Logs: "Selected driver: POSTGRES"
+6. db = null, pgPool = configured Pool
+
+DEVELOPMENT (NODE_ENV=development):
+1. Skips Postgres initialization
+2. Creates SQLite at ./data/pump-racers.db
+3. Sets up WAL mode
+4. Creates tables if needed
+5. Logs: "Selected driver: SQLITE"
+6. db = SQLite instance, pgPool = null
+
+WITH FORCE_PG=true:
+1. Behaves like production
+2. Requires DATABASE_URL
+3. Useful for testing Postgres locally
+
+═══════════════════════════════════════════════════════════════════════════════
+STARTUP LOG CHANGES:
+═══════════════════════════════════════════════════════════════════════════════
+
+NEW LOGS YOU'LL SEE:
+
+════════════════════════════════════════════════════════════════════════════
+[DB DRIVER SELECTION]
+  NODE_ENV: production
+  FORCE_PG: false
+  Selected driver: POSTGRES
+════════════════════════════════════════════════════════════════════════════
+
+[DB] Driver=postgres
+[DB] Host=ep-cool-snow-123.us-east-2.aws.neon.tech
+[DB] Database=neondb
+[DB] SSL=enabled (required for Neon)
+════════════════════════════════════════════════════════════════════════════
+
+✅ Postgres connection verified
+⚠️  Production mode detected - skipping SQLite initialization
+    Postgres will be initialized via initPostgres()
+    SQLite operations will NOT work in this mode
+✅ Production mode: SQLite disabled, Postgres will be primary backend
+
+═══════════════════════════════════════════════════════════════════════════════
+TESTING:
+═══════════════════════════════════════════════════════════════════════════════
+
+To verify changes work correctly:
+
+1. Development mode:
+   $ npm run dev
+   → Should log "Selected driver: SQLITE"
+   → Should create ./data/pump-racers.db
+   → Should NOT attempt Postgres connection
+
+2. Production mode (requires DATABASE_URL):
+   $ DATABASE_URL="postgres://..." NODE_ENV=production npm start
+   → Should log "Selected driver: POSTGRES"  
+   → Should NOT create any .db files
+   → Should connect to Postgres with SSL
+
+3. Production without DATABASE_URL:
+   $ NODE_ENV=production npm start
+   → Should throw error immediately
+   → "DATABASE_URL is required in production"
+
+═══════════════════════════════════════════════════════════════════════════════
+NEXT STEPS FOR REPLIT DEPLOYMENT:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Ensure DATABASE_URL is set in Replit Secrets (Neon connection string)
+2. Run: NODE_ENV=production npm run db:push:pg
+3. Deploy and verify logs show "Selected driver: POSTGRES"
+4. Confirm no .db files are created in production
+
+═══════════════════════════════════════════════════════════════════════════════

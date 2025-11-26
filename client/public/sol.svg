@@ -1,0 +1,14 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Solana">
+  <defs>
+    <linearGradient id="solanaGradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00FFA3"/>
+      <stop offset="1" stop-color="#DC1FFF"/>
+    </linearGradient>
+  </defs>
+  <!-- Top bar -->
+  <path d="M4 6H20L18 8H2L4 6Z" fill="url(#solanaGradient)"/>
+  <!-- Middle bar -->
+  <path d="M4 11H20L18 13H2L4 11Z" fill="url(#solanaGradient)"/>
+  <!-- Bottom bar -->
+  <path d="M4 16H20L18 18H2L4 16Z" fill="url(#solanaGradient)"/>
+</svg>

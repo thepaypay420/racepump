@@ -1,0 +1,121 @@
+<?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *'); // Allow CORS if your frontend is on a different domain
+
+// File to store cached token data
+$cacheFile = 'tokens_cache.json';
+$cacheDuration = 60; // Cache for 60 seconds (1 minute)
+
+// Check if cache exists and is fresh
+$tokensData = null;
+if (file_exists($cacheFile)) {
+    $cacheTime = filemtime($cacheFile);
+    if ((time() - $cacheTime) < $cacheDuration) {
+        $tokensData = json_decode(file_get_contents($cacheFile), true);
+    }
+}
+
+// If no fresh cache, fetch new data from Dexscreener
+if (!$tokensData) {
+    $tokens = fetchTokenData();
+    if ($tokens) {
+        // Update cache
+        file_put_contents($cacheFile, json_encode($tokens));
+        $tokensData = $tokens;
+    } else {
+        // Fallback: Use old cache if fetch fails, or return empty array
+        $tokensData = file_exists($cacheFile) ? json_decode(file_get_contents($cacheFile), true) : [];
+    }
+}
+
+// Output the token data
+echo json_encode($tokensData);
+
+function fetchTokenData() {
+    try {
+        // Fetch token profiles
+        $profilesUrl = 'https://api.dexscreener.com/token-profiles/latest/v1';
+        $profilesResponse = @file_get_contents($profilesUrl);
+        if ($profilesResponse === false) {
+            throw new Exception('Failed to fetch token profiles');
+        }
+        $profilesData = json_decode($profilesResponse, true);
+        if (!$profilesData || !is_array($profilesData)) {
+            throw new Exception('Invalid token profiles data');
+        }
+
+        // Filter for tokens ending with 'pump'
+        $filteredProfiles = array_filter($profilesData, function($token) {
+            return isset($token['tokenAddress']) && substr($token['tokenAddress'], -4) === 'pump';
+        });
+
+        $filteredProfiles = array_values($filteredProfiles); // Reindex array
+
+        // Fetch trading pairs for each token
+        $tokens = [];
+        $SOL_ADDRESS = "So11111111111111111111111111111111111111112"; // Wrapped SOL address
+
+        foreach ($filteredProfiles as $token) {
+            $tokenAddress = $token['tokenAddress'];
+            $pairsUrl = "https://api.dexscreener.com/latest/dex/tokens/{$tokenAddress}";
+            $pairsResponse = @file_get_contents($pairsUrl);
+            if ($pairsResponse === false) {
+                continue; // Skip if fetch fails
+            }
+            $pairsData = json_decode($pairsResponse, true);
+            if (!$pairsData || !isset($pairsData['pairs']) || count($pairsData['pairs']) === 0) {
+                continue; // Skip if no pairs
+            }
+
+            // Select the pair: SOL pair with highest liquidity, or highest liquidity overall
+            $selectedPair = null;
+            $solPairs = [];
+            $maxLiquidity = 0;
+            $maxLiquidityPair = null;
+
+            foreach ($pairsData['pairs'] as $pair) {
+                if ($pair['quoteToken']['address'] === $SOL_ADDRESS) {
+                    $solPairs[] = $pair;
+                }
+                if ($pair['liquidity']['usd'] > $maxLiquidity) {
+                    $maxLiquidity = $pair['liquidity']['usd'];
+                    $maxLiquidityPair = $pair;
+                }
+            }
+
+            if (!empty($solPairs)) {
+                usort($solPairs, function($a, $b) {
+                    return $b['liquidity']['usd'] <=> $a['liquidity']['usd'];
+                });
+                $selectedPair = $solPairs[0];
+            } else {
+                $selectedPair = $maxLiquidityPair;
+            }
+
+            if ($selectedPair) {
+                $tokens[] = [
+                    'tokenAddress' => $tokenAddress,
+                    'icon' => $token['icon'],
+                    'description' => $token['description'],
+                    'links' => $token['links'],
+                    'symbol' => $selectedPair['baseToken']['symbol'] ?? 'Unknown',
+                    'name' => $selectedPair['baseToken']['name'] ?? 'Unknown',
+                    'tokenUrl' => $token['url'],
+                    'pairUrl' => $selectedPair['url'],
+                    'priceUsd' => $selectedPair['priceUsd'] ?? null,
+                    'priceChange24h' => $selectedPair['priceChange']['h24'] ?? null,
+                    'volume24h' => $selectedPair['volume']['h24'] ?? null,
+                    'liquidityUsd' => $selectedPair['liquidity']['usd'] ?? null,
+                    'marketCap' => $selectedPair['marketCap'] ?? null,
+                    'fdv' => $selectedPair['fdv'] ?? null,
+                ];
+            }
+        }
+
+        return $tokens;
+    } catch (Exception $e) {
+        error_log('Error fetching token data: ' . $e->getMessage());
+        return null;
+    }
+}
+?>

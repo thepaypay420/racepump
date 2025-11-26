@@ -1,0 +1,277 @@
+You’re Replit’s AI dev agent working on a TypeScript/Node project named PumpRacerDappv3. Implement the following changes exactly, using the file paths below. Keep coding style/formatter consistent with the repo. Do not introduce rate-limiting blockers or change business rules not specified here.
+
+High-level goals
+
+Deterministic lifecycle: OPEN 30m → LOCKED (snapshot start prices) → IN_PROGRESS 30m → SETTLED (winner = highest % gain).
+
+Remove/disable RNG for picking winners.
+
+Snapshot initial prices at LOCK time (not creation time).
+
+Real escrow payouts: pay winners from the pot (server escrow ATA), and move rake and jackpot on-chain to their wallets. No minting for payouts/refunds/rake/jackpot.
+
+Timer crash-safety: on server boot, reconcile races forward by timestamps so nothing gets stuck.
+
+Global txSig dedupe: reject any reused transaction signature across all races.
+
+Safer defaults: default new races to 30 min OPEN (not ~3s).
+
+Logging & small UX polish for clarity (timestamps, txids).
+
+ENV + constants
+
+Add (or confirm) these env vars and wire them where needed:
+
+RACE_MINT (SPL mint for wagers/payouts)
+
+SERVER_KEYPAIR (base58 or path to JSON; this is the escrow authority)
+
+TREASURY_PUBKEY
+
+JACKPOT_PUBKEY
+
+CLUSTER (e.g., mainnet-beta)
+
+Data model updates
+
+File: server/types.ts (or wherever Race type/schema lives)
+
+Extend Race (and DB schema) with:
+
+lockedTs?: number // ms since epoch, set when moving to LOCKED
+
+inProgressTs?: number // set when moving to IN_PROGRESS
+
+Ensure serialization/deserialization is updated accordingly.
+
+DB migration
+
+Add columns lockedTs INTEGER NULL, inProgressTs INTEGER NULL.
+
+Add a new table for tx dedupe:
+
+seen_tx (sig TEXT PRIMARY KEY, seenAt INTEGER NOT NULL)
+
+If using SQLite, add a simple migration file and run it on boot.
+
+Remove RNG winner selection at lock
+
+File: server/admin.ts
+
+In handleLockRace(raceId):
+
+Remove any RNG/winner picking. Do not set winnerIndex here.
+
+Set race.status = 'LOCKED'.
+
+Set race.lockedTs = Date.now().
+
+Fetch fresh prices for each runner using the project’s existing “live price” util (keep your current source; do not add liquidity/TWAP rules).
+
+Write the fetched value to runner.initialPrice for every runner in this race and persist to DB.
+
+Persist the race.
+
+Pseudo-code replacement inside handleLockRace:
+
+// PSEUDO — adapt to your repo's exact types/helpers
+const race = await db.getRace(raceId);
+if (race.status !== 'OPEN') throw new Error('Only OPEN can be LOCKED');
+
+const prices = await getLivePricesForRunners(race.runners); // existing util
+race.runners = race.runners.map(r => ({ ...r, initialPrice: prices[r.mint] ?? r.initialPrice ?? 0 }));
+
+race.status = 'LOCKED';
+race.lockedTs = Date.now();
+
+await db.saveRace(race);
+
+Single source of price truth
+
+Files: remove duplication between server/jupiter.ts and server/runners.ts if both fetch prices.
+
+Keep one live price function (e.g., getLivePricesForRunners(runners)).
+
+Use it in both handleLockRace (for initial snapshot) and settlement (for final snapshot).
+
+Do not add liquidity/TWAP logic.
+
+Settlement: highest % gain wins
+
+File: server/sse.ts (or wherever the lifecycle/timers run)
+
+Ensure the state machine is:
+
+OPEN (bets allowed) for 30 minutes from race.startTs
+
+At startTs + 30m: move to LOCKED (if not already), snapshot initial prices, set lockedTs.
+
+Immediately after LOCKED, move to IN_PROGRESS and set inProgressTs = Date.now() (or you can separate these if desired; but keep the 30m window strictly for the final measurement).
+
+After inProgressTs + 30m: settle:
+
+Fetch final prices with the same live price util.
+
+For each runner: pctGain = (final - initial) / initial. If initial is 0 or missing, treat as 0 gain.
+
+Winner = max pctGain. Set race.winnerIndex.
+
+Trigger payouts (see below).
+
+Set race.status = 'SETTLED', persist.
+
+Tie-break rule: If equal % gain, pick the first with that value (keep it simple).
+
+On-boot reconciliation (crash safety)
+
+File: server/index.ts or wherever the app boots
+
+On server start:
+
+Load all races that are not SETTLED.
+
+For each:
+
+If status === 'OPEN' and Date.now() >= race.startTs + 30m: call the same lock flow (snapshot & set lockedTs).
+
+If status === 'LOCKED' and !inProgressTs: set inProgressTs = Date.now() to start the clock.
+
+If status === 'LOCKED' || status === 'IN_PROGRESS' and the elapsed time since inProgressTs >= 30m: call settlement.
+
+After reconciling, re-arm any timers/watchers the process uses.
+
+Log each reconciliation action with race id, old→new status, and timestamps.
+
+Real escrow payouts (no minting for payouts/refunds/rake/jackpot)
+
+File: server/solana.ts
+
+Create helpers (or replace sendSplTokens) to TRANSFER SPL tokens from the server escrow ATA (for RACE_MINT) to recipients:
+
+transferFromEscrow({ mint, to, amount })
+
+transferRakeToTreasury({ mint, amount })
+
+transferJackpot({ mint, amount })
+
+Keep a mintTo helper only for faucet/bootstrap features. Do not call mintTo in settlement/refund paths.
+
+Make sure we create/derive ATAs for both from/to as needed.
+
+IMPORTANT: If the current code uses a generic sendSplTokens that calls mintTo, replace its internals with a transfer built via Token Program. Return the txSig and surface it to callers.
+
+File: server/settlement.ts
+
+After winner is computed:
+
+Compute the pot = sum of validated bets (actually received to escrow). Use existing accounting but ensure it mirrors on-chain transfers.
+
+Compute rake and jackpotContribution using current percentages in config.
+
+Compute **winnerPayout = pot - rake - jackpotContribution`.
+
+Execute transfers in this order:
+
+transferRakeToTreasury
+
+transferJackpot
+
+For each winning bettor: transferFromEscrow of their proportional payout (if you pay pro-rata) or full pot (if winner-takes-all among those who bet the winner). Keep the existing business rule.
+
+Record on-chain txids for each transfer in DB (table where you keep claims/payouts). Surface these txids to the API/UI.
+
+Refund paths (if any): also transfer from escrow, don’t mint.
+
+Global transaction signature dedupe
+
+Files: server/db.ts, any bet-intake handler (e.g., server/bets.ts)
+
+Create table seen_tx(sig TEXT PRIMARY KEY, seenAt INTEGER NOT NULL).
+
+On bet submission:
+
+Before accepting, check if sig exists globally. If yes → reject.
+
+If not, insert {sig, seenAt: Date.now()} then process as normal.
+
+Add a daily cleanup (optional) to prune entries older than, say, 48h.
+
+Defaults & UX
+
+File: server/admin.ts (or wherever races are created)
+
+Default startMinutesFromNow to 30 for production create flows.
+
+When returning race objects in APIs, include:
+
+startTs, lockedTs, inProgressTs, and a computed endsAt (in-progress end).
+
+Ensure the front-end shows clear countdowns for:
+
+Time left to bet (OPEN → LOCKED)
+
+Time left in race (IN_PROGRESS → SETTLED)
+
+In settlement response, include winnerIndex, winnerMint, final % gains per runner, and txids for rake/jackpot/payout transfers.
+
+Tests / Acceptance checks
+
+Implement or update minimal tests or ad-hoc scripts:
+
+Lifecycle sanity
+
+Create a race with startMinutesFromNow = 0.5 (30s for test).
+
+Place a couple of bets (different runners).
+
+When race auto-LOCKS, verify initialPrice is freshly set (≠ creation-time price).
+
+After auto-settlement, verify winnerIndex = max % gain and status = SETTLED.
+
+No RNG
+
+Searching codebase: no call sites remain that set winnerIndex before settlement or use RNG to pick a winner.
+
+Escrow payouts
+
+After settlement, verify on-chain:
+
+Escrow ATA decreased by pot.
+
+Treasury ATA increased by rake.
+
+Jackpot ATA increased by jackpotContribution.
+
+Winners’ ATAs increased by the correct payout amounts.
+
+DB contains the recorded tx signatures for each of the above.
+
+Reconciliation
+
+Kill the server during OPEN. Restart after 31+ minutes → race should be LOCKED and initialPrice snapshot recorded.
+
+Kill during IN_PROGRESS. Restart after 31+ minutes → race should finish and settle.
+
+Global txSig dedupe
+
+Try to post the same bet txSig twice across two different races → the second attempt must be rejected.
+
+Notes / Must-keeps
+
+Do NOT add liquidity floors, min volume filters, TWAP/VWAP sampling, or “deepest pool” logic. Market manipulation is allowed by design here.
+
+Keep the existing price source util; just standardize on one path and call it at LOCK and at SETTLE.
+
+Leave any faucet/bootstrap minting logic intact, but never mint for payouts/refunds/rake/jackpot.
+
+Preserve public APIs unless stated; if you add fields (timestamps, txids), it’s additive.
+
+When done, output:
+
+A concise summary of changed files
+
+Any new env vars and their expected formats
+
+Example logs from a full race (OPEN→LOCKED→IN_PROGRESS→SETTLED) showing timestamps and txids
+
+A quick “how to run” for the reconciler behavior (what it logs on boot)

@@ -1,0 +1,104 @@
+2025-10-26 03:40:22.32
+1c2db729
+System
+starting up user application
+2025-10-26 03:40:22.32
+1c2db729
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2025-10-26 03:40:29.22
+1c2db729
+User
+> rest-express@1.0.0 start
+2025-10-26 03:40:29.22
+1c2db729
+User
+> NODE_ENV=production node dist/index.js
+2025-10-26 03:40:35.83
+1c2db729
+User
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+2025-10-26 03:40:37.80
+1c2db729
+User
+✅ BigInt bindings working correctly
+2025-10-26 03:40:37.81
+1c2db729
+User
+🚀 Starting PumpBets server with deployment fixes...
+2025-10-26 03:40:37.81
+1c2db729
+User
+🔄 Initializing database and hydration...
+2025-10-26 03:40:37.81
+1c2db729
+User
+════════════════════════════════════════════════════════════════════════════════
+2025-10-26 03:40:37.81
+1c2db729
+User
+[DB DRIVER SELECTION]
+2025-10-26 03:40:37.81
+1c2db729
+User
+NODE_ENV: production
+2025-10-26 03:40:37.81
+1c2db729
+User
+FORCE_PG: 1
+2025-10-26 03:40:37.81
+1c2db729
+User
+Selected driver: POSTGRES
+2025-10-26 03:40:37.81
+1c2db729
+User
+════════════════════════════════════════════════════════════════════════════════
+2025-10-26 03:40:37.81
+1c2db729
+User
+⚠️ Production mode detected - SKIPPING SQLite
+2025-10-26 03:40:37.81
+1c2db729
+User
+Postgres will be the ONLY backend (no SQLite cache)
+2025-10-26 03:40:37.81
+1c2db729
+User
+All database operations will use Postgres directly
+2025-10-26 03:40:37.81
+1c2db729
+User
+✅ Production mode: Postgres-only (no SQLite)
+2025-10-26 03:40:37.81
+1c2db729
+User
+⏭️ Skipping SQLite table creation - production uses Postgres only
+2025-10-26 03:40:37.81
+1c2db729
+User
+ℹ️ Production mode: PostgresStorage will be initialized after Postgres connects
+2025-10-26 03:40:37.81
+1c2db729
+User
+📦 Using Postgres connection string from DATABASE_URL
+2025-10-26 03:40:37.81
+1c2db729
+User
+🔌 Postgres pool created (source=DATABASE_URL) -> postgresql://***:***@ep-blue-waterfall-aes4j7oi.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
+2025-10-26 03:40:38.05
+1c2db729
+User
+✅ Postgres connection verified
+2025-10-26 03:40:38.05
+1c2db729
+User
+🔄 Running migrations to initialize schema...
+2025-10-26 03:40:38.05
+1c2db729
+User
+🔄 Running pure SQL migrations... (call #1)
+2025-10-26 03:40:38.05
+1c2db729
+User
+📍 Stack trace: at runProductionMigrations (file:///home/runner/workspace/dist/index.js:1309:41)
