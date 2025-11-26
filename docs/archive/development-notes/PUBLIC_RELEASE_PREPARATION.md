@@ -43,14 +43,7 @@ This document summarizes the changes made to prepare the repository for public r
 
 ### 3. Phantom Review Submission
 
-Created `PHANTOM_DAPP_REVIEW_SUBMISSION.md` with:
-- ✅ Complete form responses
-- ✅ Detailed explanation of RACESwap functionality
-- ✅ Technical details about transaction structure
-- ✅ Explanation of why transactions may appear unusual
-- ✅ Safety assurances and transparency measures
-- ✅ Program IDs and treasury wallet addresses
-- ✅ Notes for completing the submission
+Phantom review submission documentation should be prepared locally and is not included in the public repository.
 
 ## 📋 Key Changes Summary
 
@@ -71,7 +64,6 @@ Created `PHANTOM_DAPP_REVIEW_SUBMISSION.md` with:
 2. `.deploy/raceswap-deployer.json` - Sanitized private key
 3. `docs/WHITEPAPER.md` - Complete rewrite to reflect current state
 4. `README.md` - Updated to reflect SOL betting and mainnet
-5. `PHANTOM_DAPP_REVIEW_SUBMISSION.md` - New file with form responses
 
 ## ⚠️ Important Notes
 
@@ -80,7 +72,7 @@ Created `PHANTOM_DAPP_REVIEW_SUBMISSION.md` with:
 1. **Review all environment variables** in code to ensure no hardcoded secrets
 2. **Test that `.gitignore` is working** - verify sensitive files are excluded
 3. **Complete a test transaction** for Phantom submission and add the Solscan link
-4. **Fill in placeholder information** in `PHANTOM_DAPP_REVIEW_SUBMISSION.md`:
+4. **Prepare Phantom submission documentation locally** (not included in public repository):
    - Your actual name
    - Social media handles
    - GitHub repository URL (once public)
@@ -112,8 +104,8 @@ Created `PHANTOM_DAPP_REVIEW_SUBMISSION.md` with:
 
 ## 📝 Phantom Submission Instructions
 
-1. Open `PHANTOM_DAPP_REVIEW_SUBMISSION.md`
-2. Fill in all placeholder fields marked with `[Your ...]` or `[If applicable]`
+1. Prepare Phantom submission documentation locally (not included in public repository)
+2. Fill in all required fields with your information
 3. Complete a test swap transaction on https://racepump.fun/raceswap
 4. Copy the transaction signature from Solscan
 5. Paste the Solscan link into the "Transaction Link" field

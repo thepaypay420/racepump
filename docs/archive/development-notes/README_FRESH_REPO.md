@@ -70,12 +70,9 @@ ls -la data/
 
 After creating the fresh repo:
 
-1. **Update Phantom submission** (`PHANTOM_DAPP_REVIEW_SUBMISSION.md`):
-   - Add your new GitHub repository URL
+1. **Update any deployment scripts** that reference the old repo URL
 
-2. **Update any deployment scripts** that reference the old repo URL
-
-3. **Consider adding a CHANGELOG.md** for future version tracking:
+2. **Consider adding a CHANGELOG.md** for future version tracking:
    ```markdown
    # Changelog
 
