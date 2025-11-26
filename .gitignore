@@ -45,3 +45,5 @@ backups/
 *.db-wal
 telegram-poster-bot.session
 race-results-bot.session
+news_monitor_session.session
+*.session
