@@ -68,7 +68,7 @@ export async function registerRoutes(app: Express): Promise<void> {
   const balancesRpcUrl =
     process.env.RPC_URL_MAINNET ||
     process.env.RPC_URL ||
-    'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+    'https://api.mainnet-beta.solana.com';
   const balancesConnection = new Connection(balancesRpcUrl, 'confirmed');
   const mintDecimalsCache = new Map<string, number>();
   const mintProgramCache = new Map<string, TokenProgramId>();

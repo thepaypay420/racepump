@@ -10,7 +10,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 // Solana connection
 const ESCROW_PRIVATE_KEY = process.env.ESCROW_PRIVATE_KEY;
-const RPC_URL = process.env.RPC_URL || 'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+const RPC_URL = process.env.RPC_URL || 'https://api.mainnet-beta.solana.com';
 const escrowKeypair = Keypair.fromSecretKey(bs58.decode(ESCROW_PRIVATE_KEY));
 const connection = new Connection(RPC_URL, 'confirmed');
 

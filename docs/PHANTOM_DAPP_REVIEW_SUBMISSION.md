@@ -27,7 +27,7 @@ To create an engaging, transparent, and fair prediction market for meme token pr
 **[Your Name]**
 
 ### Your E-mail
-**oxthepaypay@gmail.com**
+**[your-email@example.com]**
 
 ### Transaction Link
 **[Please complete a transaction on the dApp and provide the Solscan link here]**

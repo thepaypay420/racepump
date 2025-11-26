@@ -27,7 +27,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Environment validation with fallbacks for development
-const RPC_URL = process.env.RPC_URL || "https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/";
+const RPC_URL = process.env.RPC_URL || "https://api.mainnet-beta.solana.com";
 const ESCROW_PRIVATE_KEY = process.env.ESCROW_PRIVATE_KEY || process.env.SERVER_KEYPAIR;
 const RACE_MINT = process.env.RACE_MINT;
 const TREASURY_PUBKEY = process.env.TREASURY_PUBKEY;

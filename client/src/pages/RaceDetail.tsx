@@ -311,7 +311,7 @@ export default function RaceDetail() {
       // Create RPC connection early for balance checks
       const rpcUrl =
         import.meta.env.VITE_RPC_URL ||
-        'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+        'https://api.mainnet-beta.solana.com';
       const connection = new Connection(rpcUrl, 'confirmed');
       
       // For RACE, derive mint and token accounts
@@ -506,7 +506,7 @@ export default function RaceDetail() {
         // If we can fetch logs here, do it
         const rpcUrl =
           import.meta.env.VITE_RPC_URL ||
-          'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+          'https://api.mainnet-beta.solana.com';
         const cx = new Connection(rpcUrl, 'confirmed');
         const anyErr: any = error;
         if (typeof anyErr?.getLogs === 'function') {

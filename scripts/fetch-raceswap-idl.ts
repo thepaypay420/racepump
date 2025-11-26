@@ -3,7 +3,7 @@ import { Connection, Keypair, PublicKey, Transaction } from "@solana/web3.js";
 
 const DEFAULT_RPC =
   process.env.RPC_URL ||
-  "https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/";
+  "https://api.mainnet-beta.solana.com";
 
 function createDummyWallet() {
   const keypair = Keypair.generate();
