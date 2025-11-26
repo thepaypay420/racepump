@@ -4,7 +4,7 @@ import Decimal from 'decimal.js';
 
 // Load environment variables
 const ESCROW_PRIVATE_KEY = process.env.ESCROW_PRIVATE_KEY;
-const RPC_URL = process.env.RPC_URL || 'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+const RPC_URL = process.env.RPC_URL || 'https://api.mainnet-beta.solana.com';
 
 if (!ESCROW_PRIVATE_KEY) {
   throw new Error('ESCROW_PRIVATE_KEY environment variable is required');

@@ -4,7 +4,7 @@ const bs58 = require("bs58");
 
 async function checkBalance() {
   try {
-    const RPC_URL = process.env.RPC_URL || "https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/";
+    const RPC_URL = process.env.RPC_URL || "https://api.mainnet-beta.solana.com";
     const connection = new Connection(RPC_URL, "confirmed");
     
     // Load escrow keypair

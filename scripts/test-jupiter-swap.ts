@@ -48,7 +48,7 @@ async function main() {
 
   // Connect to Solana mainnet or devnet
   const rpcUrl = network === 'mainnet' 
-    ? (process.env.SOLANA_RPC_URL || process.env.RPC_URL || 'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/')
+    ? (process.env.SOLANA_RPC_URL || process.env.RPC_URL || 'https://api.mainnet-beta.solana.com')
     : 'https://api.devnet.solana.com';
   const connection = new Connection(rpcUrl, 'confirmed');
 

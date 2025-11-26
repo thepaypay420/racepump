@@ -27,7 +27,7 @@ async function testJupiterEndpoints() {
   const rpcUrl =
     process.env.SOLANA_RPC_URL ||
     process.env.RPC_URL ||
-    'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
+    'https://api.mainnet-beta.solana.com';
   const connection = new Connection(rpcUrl, 'confirmed');
   
   const balance = await connection.getBalance(escrowKeypair.publicKey);

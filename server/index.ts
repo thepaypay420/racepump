@@ -250,8 +250,8 @@ let httpServer: any = null;
     console.log('🔄 Setting default environment variables...');
     // Set default values for environment variables
       if (!process.env.RPC_URL) {
-        process.env.RPC_URL = 'https://spring-cold-tree.solana-mainnet.quiknode.pro/24011188359c3607a1ed91ac2ecbfe22b8e39681/';
-        logger.info('Using default Solana mainnet RPC (QuickNode)');
+        process.env.RPC_URL = 'https://api.mainnet-beta.solana.com';
+        logger.info('Using default Solana mainnet RPC (public endpoint)');
       }
       if (!process.env.RPC_URL_MAINNET) {
         process.env.RPC_URL_MAINNET = process.env.RPC_URL;
