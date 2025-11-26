@@ -71,7 +71,8 @@ RACESwap is a built-in token swap interface powered by Jupiter that enables user
 
 **Technical Implementation:**
 - Built on Jupiter's swap infrastructure for optimal routing and liquidity
-- Uses Anchor program (RACESwap V3) for on-chain execution
+- Fully UI-based implementation running directly through the raceswap interface
+- Executes swaps client-side using Jupiter's API for optimal routing and execution
 - Supports versioned transactions with address lookup tables for efficiency
 - Minimum swap amount: 0.01 SOL (to ensure meaningful reflection amounts)
 - Includes CSGO-style crate animation showing the meme token received
@@ -184,7 +185,6 @@ Operational controls:
 Key environment variables:
 - `RPC_URL`: Solana RPC endpoint.
 - `OPEN_WINDOW_MINUTES`, `PROGRESS_WINDOW_MINUTES`, `TRANSITION_GRACE_MS`: Phase timings.
-- `RACESWAP_PROGRAM_ID`: On-chain RACESwap program address.
 - `RACESWAP_TREASURY_WALLET`: Treasury wallet for RACESwap fees.
 - `RACESWAP_REFLECTION_FEE_BPS`: Reflection fee in basis points (default 100 = 1.00%).
 - `RACESWAP_TREASURY_FEE_BPS`: Treasury fee in basis points (default 20 = 0.20%).
