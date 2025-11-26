@@ -85,7 +85,6 @@ Make sure the treasury wallet has an associated token account for every supporte
 - **Quick Start**: `QUICK_START.md` - Get up and running in 5 minutes
 - **Persistence Setup**: `PERSISTENCE_SETUP.md` - **READ THIS FIRST FOR PRODUCTION**
 - **Whitepaper**: `docs/WHITEPAPER.md` - Complete protocol documentation
-- **Phantom Review Submission**: `docs/PHANTOM_DAPP_REVIEW_SUBMISSION.md` - Form responses for wallet review
 - **Feature Documentation**: `docs/MEME_REWARD_FEATURE.md` - Meme reward system details
 - **API Endpoints**: Check `/api/persistence` for health status
 

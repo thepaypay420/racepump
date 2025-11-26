@@ -19,8 +19,7 @@ This document summarizes the cleanup performed to prepare the repository for pub
   - `.env.production.example`
 
 ### Sanitized Personal Information
-- **Removed**: Email address from `docs/PHANTOM_DAPP_REVIEW_SUBMISSION.md`
-- **Replaced with**: Placeholder `[your-email@example.com]`
+- **Removed**: Phantom submission documentation from public repository (should be prepared locally)
 
 ## 📁 File Organization
 
@@ -33,7 +32,6 @@ Only essential documentation remains:
 ### Documentation Structure
 - `docs/` - Main documentation
   - `WHITEPAPER.md` - Protocol documentation
-  - `PHANTOM_DAPP_REVIEW_SUBMISSION.md` - Wallet review submission
   - `MEME_REWARD_FEATURE.md` - Feature documentation
   - `mainnet-migration-checklist.md` - Migration guide
   - `mainnet-readiness.md` - Mainnet readiness checklist
@@ -89,7 +87,7 @@ Before making the repository public:
 1. ✅ Review this cleanup summary
 2. ✅ Verify no additional sensitive information exists
 3. ✅ Test that the application still works with environment variables
-4. ✅ Update any remaining placeholder values in `docs/PHANTOM_DAPP_REVIEW_SUBMISSION.md`
+4. ✅ Prepare Phantom submission documentation locally (not included in public repository)
 5. ✅ Make repository public on GitHub
 
 ---
