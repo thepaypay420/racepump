@@ -1,95 +1,52 @@
-## Pump Racers Whitepaper
+## Swap&Rip/racepump Whitepaper
 
 ### Abstract
-Pump Racers is a parimutuel, price-velocity prediction market built on Solana that turns live Pump.fun meme coins into "runners" in time-boxed races. Participants stake SOL to predict which runner will outperform the rest during a defined window. Settlement is provably transparent and verifiable via GeckoTerminal price data. A 5% rake on SOL bets funds the protocol treasury and a rolling jackpot, while Edge Points reward power users based on performance, efficiency, and pot size. The platform also features Swap&Rip, a built-in token swap interface powered by Jupiter. Swap&Rip includes an innovative Pokémon Card Drops system where every qualifying swap has a chance to win real, professionally graded Pokémon cards held in the on-chain RaceBank treasury—all determined by a provably fair cryptographic roll. $RACE token holders receive boosted drop probabilities (up to 2x at the 20M tier), incentivizing long-term holding and community participation.
+Swap&Rip is a Solana-native token swap interface powered by Jupiter that rewards every qualifying trade with a chance to win real, professionally graded Pokémon cards. A 2.5% fee on each swap funds the reward pool, and a provably fair cryptographic roll determines whether the user wins a card. Won cards are delivered as Solana NFTs backed 1:1 by physical graded cards held in secure vaults by Collector Crypt — redeemable at any time for the real card shipped to the winner's door. $RACE token holders receive boosted drop probabilities (up to 2x at the 20M tier), incentivizing long-term holding and community participation.
 
 ### Overview
 - **Network**: Solana (mainnet)
-- **Market Type**: Parimutuel pool; winners split prize pool proportionally
-- **Unit of Account**: SOL (native Solana currency, 9 decimals)
-- **Rake**: 5% of total pot per race for SOL bets (3% treasury, 2% jackpot)
-- **Verification**: Single-source USD feeds from GeckoTerminal plus OHLCV-based post-race verification links
-- **Edge Points**: Non-transferable reward points accruing to user accounts, redeemable in future programs funded by rake
-- **Swap&Rip**: Built-in Jupiter-powered swap interface with Pokémon Card Drops on every qualifying swap
-- **Card Drops**: Provably fair NFT reward system where users can win real, graded Pokémon cards with qualifying swaps (~1 in 80 per 1 SOL)
-- **RACE Boosts**: $RACE token holders receive up to 2x boosted drop probabilities across all reward types
+- **Swap Engine**: Jupiter aggregator (UltraV3) — best-route execution across all Solana liquidity
+- **Fee**: 2.5% of total swap value, funding the Pokémon Card Drop reward pool
+- **Card Drops**: Provably fair NFT reward system — ~1 in 80 chance per 1 SOL swapped
+- **Cards**: Real, PSA/CGC/Beckett-graded Pokémon cards tokenized as Solana NFTs via Collector Crypt
+- **Redemption**: Full physical redemption through Collector Crypt — any card NFT can be exchanged for the real graded card, shipped worldwide
+- **RACE Boosts**: $RACE token holders receive up to 2x boosted drop probabilities
+- **Treasury**: RaceBank wallet (`racebank.sol`) holds card NFTs on-chain, verifiable by anyone
 
-### Current Implementation: SOL Betting
-The platform currently operates using SOL (native Solana currency) as the unit of account for all bets and payouts. This provides:
-- **Immediate liquidity**: No need for token swaps before betting
-- **Lower friction**: Users can bet directly with SOL from their wallets
-- **Transparent economics**: All settlements and payouts in native SOL
-- **Future expansion**: Support for $RACE token betting is planned for future releases
-
-**Note**: The $RACE token will be introduced in a future update, enabling additional utility and governance features. When implemented, it will support:
-- Fee-rebate tiers and airdrops
-- Governance voting rights
-- Enhanced Edge Points redemption programs
-
-### Core Mechanics
-Pump Racers operates parimutuel pools per race:
-1. Users place predictions by staking SOL on one of the listed runners during the OPEN window.
-2. At LOCK, the protocol captures a USD baseline price for every runner.
-3. During IN_PROGRESS, price changes are tracked relative to baseline.
-4. At SETTLED, the runner with the highest percentage gain wins; winners split the prize pool pro-rata.
-5. A fixed 5% rake is taken from SOL bets; a jackpot can roll over and optionally be paid out on designated races.
-
-Mathematical outline:
-- Let P be the total pot.
-- Rake = 5% of P (for SOL bets). PrizePool = (P − Rake) + JackpotPayout.
-- Winner share for wallet w on the winning runner = PrizePool × (w's winning stake / total winning stakes).
-- Payouts are rounded down to 9 decimals (SOL precision).
-
-### Rake and Treasury
-- **Rake**: 5% of the pot per race for SOL bets, parameterized as 500 bps.
-- **Split**:
-  - 3% of pot (60% of rake) → Treasury
-  - 2% of pot (40% of rake) → Jackpot contribution (retained in escrow accounting)
-- **Jackpot**:
-  - Accumulates from the 2% rake component
-  - Payouts occur only on races flagged as jackpot races
-  - Jackpot contributions are accounted for in database/escrow and not separately transferred on-chain at settlement time
-
-### Swap&Rip: Token Swapping with Pokémon Card Drops
-Swap&Rip is the built-in token swap interface powered by Jupiter that enables users to swap SOL (or other tokens) for meme tokens directly within the Pump Racers platform. Every qualifying swap gives users a chance to win real, professionally graded Pokémon cards from the on-chain RaceBank treasury.
-
-**How Swap&Rip Works:**
-1. Users select input and output tokens via the swap interface
+### How Swap&Rip Works
+1. User selects input and output tokens via the swap interface
 2. Jupiter aggregator finds the best route and executes the swap
-3. A small fee is collected for the protocol treasury and card drop pool
+3. A 2.5% fee is collected, funding the card drop reward pool
 4. After successful swap confirmation, the system rolls for a Pokémon card drop
-5. Winners receive their card NFT directly to their wallet
+5. If the user wins, a card NFT is transferred directly to their wallet
+6. The winner can hold, trade, or redeem the NFT for the physical graded card through Collector Crypt
 
 **Technical Implementation:**
 - Built on Jupiter's swap infrastructure for optimal routing and liquidity
-- Browser based UltraV3 on-chain execution
+- Browser-based UltraV3 on-chain execution
 - Supports versioned transactions with address lookup tables for efficiency
 - Minimum swap amount: 0.1 SOL (to qualify for card drops)
-- Includes crate-opening animation when a card is won
+- Crate-opening animation plays when a card is won
 
-**Benefits:**
-- Seamless token acquisition without leaving the platform
-- Chance to win real, valuable Pokémon cards with every swap
-- Transparent and provably fair drop system
-- Enhanced user experience with visual feedback (crate animation)
+### Pokémon Card Drops
 
-### Pokémon Card Drops: NFT Reward System
-Swap&Rip includes an innovative NFT reward system where users can win real, professionally graded Pokémon cards with every qualifying swap. These physical cards are tokenized as Solana NFTs and held in the protocol's on-chain treasury (`racebank.sol`), enabling verifiable, transparent, and provably fair distribution.
+Every qualifying swap rolls for a chance to win a real, professionally graded Pokémon card. These physical cards are tokenized as Solana NFTs by Collector Crypt and held in the protocol's on-chain treasury (`racebank.sol`), enabling verifiable, transparent, and provably fair distribution.
 
-**Overview:**
-- Cards are real, physical Pokémon cards that have been professionally graded (typically PSA-graded)
-- Each card is tokenized as a unique NFT on Solana with on-chain metadata
+**The Cards:**
+- Real, physical Pokémon cards professionally graded by PSA, CGC, or Beckett
+- Each card is tokenized as a unique pNFT on Solana with on-chain metadata by Collector Crypt
 - Cards are held in the RaceBank treasury wallet (`6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u`)
 - The card pool is dynamically managed: won cards are immediately removed from the droppable pool
-- Card metadata includes: name, set, grade, insured value (USD), and high-resolution images
+- Card metadata includes: name, set, grade, insured value (USD), and high-resolution images of the actual graded slab
 
 **Eligibility Requirements:**
-- Minimum swap size: **0.1 SOL** or **$10 USDC** equivalent (configurable via environment)
+- Minimum swap size: **0.1 SOL** or **$10 USDC** equivalent (configurable)
 - The swap must be a recognized swap transaction (anti-spoofing verified on-chain)
-- Swaps executed through Jupiter aggregator with referral fee payment
+- Swaps executed through Jupiter aggregator with fee payment
 - Protocol and escrow swaps are not eligible (prevents gaming the system)
 
-**Drop Probability Calculation:**
+### Drop Probability
+
 The probability of winning a card scales linearly with swap size, measured in SOL-equivalent value:
 
 ```
@@ -110,26 +67,17 @@ Final Probability = min(Base Probability × Holder Boost Multiplier, 0.25)
 | 10 SOL    | 1 in 8          | ~12.5%      |
 | 20+ SOL   | 1 in 4          | 25% (capped)|
 
-**Card Selection Process:**
-When a user wins a card drop, the specific card is selected from the available pool using a provably fair mechanism:
+### Provably Fair Roll System
 
-1. **Pool Hash**: A SHA-256 hash of all available card mints (sorted alphabetically) is computed
-2. **Pick Roll**: A deterministic random value derived from `SHA-256("card-pick" | seed | signature | recipient)`
-3. **Index Selection**: `Pick Index = floor(Pick Roll × Pool Size)`
-4. **Delivery**: The card at the selected index is transferred to the winner's wallet
+All card drops use a cryptographically verifiable random number generation system. Every roll can be independently verified by anyone.
 
-The pool hash and pick roll are published in the swap receipt for independent verification.
-
-**Provably Fair Roll System:**
-All card drops use a cryptographically verifiable random number generation system:
-
+**Roll Calculation:**
 1. **Seed Generation**: The server uses the transaction's blockhash (if available) or the transaction signature as the seed
 2. **Roll Calculation**: `Roll = SHA-256("card" | seed | signature | recipient) → first 4 bytes as uint32 / 0xFFFFFFFF`
 3. **Win Condition**: `Roll < Win Probability`
 4. **Verification**: Users can independently compute the roll using the provided seed and signature
 
 ```javascript
-// Verification snippet (Node.js)
 const crypto = require('crypto');
 const seed = '<blockhash_or_signature>';
 const sig = '<transaction_signature>';
@@ -143,18 +91,127 @@ function roll(label) {
 console.log({ card: roll('card'), pick: roll('card-pick') });
 ```
 
-**Card Metadata and Display:**
-Each card in the treasury includes rich metadata:
+**Card Selection Process:**
+When a user wins a card drop, the specific card is selected from the available pool:
+
+1. **Pool Hash**: A SHA-256 hash of all available card mints (sorted alphabetically) is computed
+2. **Pick Roll**: A deterministic random value derived from `SHA-256("card-pick" | seed | signature | recipient)`
+3. **Index Selection**: `Pick Index = floor(Pick Roll × Pool Size)`
+4. **Delivery**: The card NFT at the selected index is transferred to the winner's wallet
+
+The pool hash and pick roll are published in the swap receipt for independent verification.
+
+### Fee Structure & Reward Pool Economics
+
+**The 2.5% Fee:**
+
+Every qualifying swap is charged a 2.5% fee on total swap value. This fee funds the entire card drop reward pool — card inventory acquisition from Collector Crypt, NFT operations, and prize fulfillment. The fee is transparent: swap, pay 2.5%, and every qualifying swap rolls for a card.
+
+**Why 2.5%:**
+
+The fee and the drop probability are a coupled system. For the reward pool to stay solvent, fee revenue per swap must exceed the expected card payout:
+
+```
+Fee Revenue per SOL = 0.025 × SOL Price (USD)
+Expected Card Cost per SOL = Average Card Value / 80
+
+Solvency Condition: 0.025 × SOL Price > Avg Card Value / 80
+→ Avg Card Value < 2.0 × SOL Price
+```
+
+**Current pool snapshot (live data):**
+
+| Metric | Value |
+|--------|-------|
+| Total cards in treasury | 59 |
+| Currently droppable | 56 |
+| Already won/sent | 3 |
+| Total droppable pool value | $4,234 |
+| Average card value (droppable) | $75.61 |
+| Median card value | $45.00 |
+| Min / Max card value | $5 / $1,217 |
+
+**Value distribution:**
+
+| Bracket | Cards | Avg Value | Total Value |
+|---------|-------|-----------|-------------|
+| $0 - $25 | 14 | $16 | $224 |
+| $25 - $50 | 19 | $39 | $742 |
+| $50 - $100 | 15 | $69 | $1,029 |
+| $100 - $200 | 6 | $132 | $794 |
+| $200 - $500 | 1 | $228 | $228 |
+| $500+ | 1 | $1,217 | $1,217 |
+
+**Solvency check at $86 SOL:**
+
+| Metric | Value |
+|--------|-------|
+| Fee per 1 SOL swap (2.5%) | $2.15 |
+| Expected card cost per SOL | $0.95 (avg $75.61 / 80) |
+| **Margin per SOL** | **$1.20** |
+| **Margin %** | **56.0%** |
+| Solvency ceiling | $172 avg card value |
+| Actual avg | $75.61 |
+| Headroom | $96.39 (56% under ceiling) |
+
+The pool is **solidly profitable at $86 SOL** with a 56% margin. The $1,217 Dark Gengar (1st Edition PSA 8 Neo Destiny) is the highest-value card in the pool, but the other 55 cards averaging $54.85 absorb it well — the weighted average stays at $75.61, well under the $172 ceiling.
+
+**Scenario: Dark Gengar moved to reserve**
+
+If the $1,217 card were moved to reserve (holding it in treasury but removing from the droppable pool), the remaining 55 cards would average $54.85 with a 68.1% margin. This is an option if SOL price drops significantly further, but at $86 SOL the full pool including the Dark Gengar is sustainable.
+
+**SOL price sensitivity:**
+
+| SOL Price | Fee per SOL | Solvency Ceiling | Current Avg ($75.61) | Margin |
+|-----------|-------------|------------------|---------------------|--------|
+| $50 | $1.25 | $100 | $75.61 | 24% — tight but solvent |
+| **$86** | **$2.15** | **$172** | **$75.61** | **56% — current, healthy** |
+| $120 | $3.00 | $240 | $75.61 | 68% — comfortable |
+| $150 | $3.75 | $300 | $75.61 | 75% — wide margin |
+| $200 | $5.00 | $400 | $75.61 | 81% — very wide |
+
+Even at $50 SOL the pool remains solvent at current composition, though with thin margins. Below ~$38 SOL the current pool average would exceed the ceiling and require curation (moving higher-value cards to reserve).
+
+**Active pool curation:** The protocol manages solvency by curating which cards are in the *active droppable pool* vs held in reserve:
+
+1. **Active pool**: Cards currently eligible for drops. The weighted avg must stay below the solvency ceiling at the current SOL price.
+2. **Reserve**: Premium cards held in treasury but not droppable. These are activated when SOL price rises or when enough lower-value cards are added to absorb the average.
+3. **Dynamic adjustment**: As SOL price moves, cards shift between active and reserve. Drop rates and fees never change — only pool composition adjusts.
+
+### Physical Redemption via Collector Crypt
+
+Every card NFT won through Swap&Rip is fully redeemable for the real, physical graded card. Redemption is handled through our partnership with **Collector Crypt** ([@Collector_Crypt](https://x.com/Collector_Crypt)), a Solana-native platform purpose-built for bridging physical collectibles and on-chain ownership.
+
+**How Collector Crypt Works:**
+
+Collector Crypt tokenizes professionally graded Pokémon cards (PSA, CGC, Beckett) as pNFTs on Solana. Each NFT is backed 1:1 by a real graded card stored in Collector Crypt's insured, secure vault. The NFT functions as a certificate of ownership — whoever holds the NFT owns the card.
+
+**Redemption Process:**
+1. **Win a card** through Swap&Rip — the card NFT lands in your wallet
+2. **Hold or trade** — the NFT is a standard Solana pNFT, freely tradeable on any marketplace (Tensor, Magic Eden, etc.)
+3. **Redeem anytime** — when ready for the physical card, initiate redemption through Collector Crypt
+4. **Collector Crypt ships** — the real graded slab is pulled from their secure vault and shipped to your address worldwide
+5. **NFT is burned** — upon redemption, the NFT is burned since the physical card has left the vault
+
+**Why This Matters:**
+- **Real ownership**: Every NFT is backed by a physical card sitting in a vault — not a JPEG, not a promise
+- **No shipping risk while trading**: Cards change hands instantly on-chain without the risk of damage, loss, or fraud inherent in physical shipping
+- **Global access**: Anyone with a Solana wallet can win, hold, trade, or redeem — no geographic restrictions on trading
+- **Lower fees**: On-chain trading avoids the 13%+ fees charged by traditional marketplaces like eBay
+- **Verifiable backing**: Collector Crypt's vault holdings are auditable — each NFT maps to a specific graded card with known grade, set, and insured value
+
+**Card Metadata:**
+Each card in the treasury includes rich metadata stored on decentralized storage (Arweave/IPFS) and linked via Metaplex Token Metadata standard:
 - **Name**: Full card name (e.g., "1999 Pokémon Base Set Charizard Holo #4")
 - **Set**: The Pokémon TCG set (e.g., "Base Set", "Jungle", "Rocket")
-- **Grade**: Professional grading score (e.g., "PSA 10", "PSA 9")
+- **Grade**: Professional grading score (e.g., "PSA 10", "PSA 9", "CGC 8.5")
 - **Insured Value**: USD value for insurance purposes, reflecting market value
-- **Image**: High-resolution scan of the physical graded card
+- **Image**: High-resolution scan of the physical graded slab
 
-Metadata is stored on decentralized storage (Arweave/IPFS) and linked via Metaplex Token Metadata standard.
+### Treasury Management
 
-**Treasury Management:**
-- **RaceBank Wallet**: `6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u` (racebank.sol)
+**RaceBank Treasury:**
+- **Wallet**: `6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u` (racebank.sol)
 - **Pool Tracking**: PostgreSQL database tracks enabled/sent status of each card
 - **Real-time Updates**: Won cards are immediately marked as "sent" and removed from the droppable pool
 - **Allowlist**: Server maintains an allowlist of valid card mints to prevent unauthorized additions
@@ -166,7 +223,10 @@ When a user wins a card:
 2. An SPL token transfer is executed from the RaceBank wallet to the winner's wallet
 3. The card is marked as "sent" in the database (preventing double-drops)
 4. A Telegram notification is sent to the community celebrating the win
-5. The receipt includes the card mint address and transfer signature for verification
+5. The receipt includes the card mint address, transfer signature, and full provably fair verification data
+
+**Card Sourcing:**
+New cards are continuously sourced through Collector Crypt's tokenization pipeline. Physical graded cards are deposited into Collector Crypt's vault, minted as pNFTs, and transferred to the RaceBank treasury for inclusion in the droppable pool. This creates a sustainable loop: swap fees fund card acquisition, new cards are tokenized and added to the pool, and winners can redeem physical cards through Collector Crypt.
 
 **Notifications:**
 - **Instant Win Alerts**: Telegram notifications announce card wins with card details, winner address, and swap value
@@ -174,7 +234,8 @@ When a user wins a card:
 - **Receipt Details**: Full provably fair verification data included in swap receipts
 
 ### RACE Boosts: Holder Reward Multipliers
-$RACE token holders receive boosted probabilities on all Swap&Rip rewards, including card drops and $RACE token rewards. The boost system incentivizes holding $RACE while providing tangible benefits to loyal community members.
+
+$RACE token holders receive boosted drop probabilities on card drops. The boost system incentivizes holding $RACE while providing tangible benefits to loyal community members.
 
 **Boost Tier System:**
 Boost multipliers are determined by the user's $RACE token balance, verified on-chain at the time of each swap:
@@ -188,29 +249,14 @@ Boost multipliers are determined by the user's $RACE token balance, verified on-
 | 20M  | 20M+         | 2.00x      | 1 in 40 (~2.50%)       |
 
 **How Boosts Work:**
-1. **Balance Verification**: When a swap reward is processed, the server queries the user's $RACE token balance on-chain
+1. **Balance Verification**: When a swap is processed, the server queries the user's $RACE token balance on-chain
 2. **Tier Determination**: The balance is compared against tier thresholds to determine the applicable multiplier
 3. **Probability Scaling**: The base drop probability is multiplied by the boost multiplier
 4. **Cap Enforcement**: The final probability is still capped at 25% maximum per swap
 
-**Mathematical Application:**
-For card drops:
 ```
 Final Card Probability = min(Base Probability × Boost Multiplier, 0.25)
 ```
-
-For $RACE token rewards (partial boost application):
-```
-RACE Boost Effect = 1 + (Boost Multiplier - 1) × 0.5
-Final RACE Probability = min(Base RACE Probability × RACE Boost Effect, 0.08)
-```
-
-Note: $RACE reward probability receives 50% of the boost effect to maintain sustainable economics.
-
-**Boost Benefits Summary:**
-- **Card Drops**: Full multiplier applied (up to 2x at 20M tier)
-- **$RACE Rewards**: Partial multiplier applied (up to 1.5x effective at 20M tier)
-- **Tier Progress**: UI shows progress toward the next tier and target balance
 
 **Example Scenarios:**
 
@@ -250,158 +296,27 @@ The UI displays:
 - Short cache TTL ensures balance changes are reflected quickly
 - Cap prevents excessive advantage on large swaps regardless of boost level
 
-### Race Lifecycle and Phase Timing
-Internal state machine enforces strict transitions:
-- **OPEN**
-  - Betting is open.
-  - Duration defaults to PROGRESS window plus a 30s buffer (UI typically shows ~20m30s by default).
-  - Only one race can be active (LOCKED/IN_PROGRESS) at a time; OPEN races may delay locking if another race is live.
-
-- **LOCKED**
-  - Betting closed; baseline price captured for each runner via GeckoTerminal.
-  - Short 2s grace to transition to IN_PROGRESS.
-
-- **IN_PROGRESS**
-  - Price tracking live.
-  - Default duration: 20 minutes (configurable via `PROGRESS_WINDOW_MINUTES`).
-
-- **SETTLED**
-  - Winner determined as the runner with highest percentage price increase from baseline to final.
-  - Parimutuel settlement executed: rake transferred, jackpot accounted, winners paid.
-
-- **CANCELLED**
-  - All bets refunded; used only when operationally necessary.
-
-Configurable (environment):
-- `OPEN_WINDOW_MINUTES` (optional): Explicit OPEN duration override.
-- `PROGRESS_WINDOW_MINUTES`: IN_PROGRESS window length (default 20).
-- `TRANSITION_GRACE_MS`: Small grace for safe transitions (default 5000ms).
-
-### Runners and Eligible Markets
-Runners are Pump.fun meme coins. For each runner we track:
-- Mint, name, symbol, logo
-- USD baseline price and timestamp at LOCK
-- GeckoTerminal pool address and chart URL
-
-Liquidity-sensitive pool selection:
-- For each mint, best pool is selected by sorting pools by 24h volume and reserve (liquidity), prioritizing deep and active markets.
-- This reduces manipulation risk and improves price quality.
-
-### Price Feeds and Verification
-- **Single Source of Truth**: Live USD prices sourced from GeckoTerminal across Solana pools; no mixed quotes or alternate sources.
-- **Baseline and Final Prices**: Captured at LOCK and SETTLED respectively using live price endpoints.
-- **Post-Race Verification**: Minute-level OHLCV is fetched for the dominant pool around the race window. We compute start/end prices and % change and expose a clickable GeckoTerminal chart URL for independent inspection.
-
-Verification method (high level):
-1. Resolve best pool for each token by volume and liquidity.
-2. Fetch minute OHLCV over [start−5m, end+5m].
-3. Take the nearest candle at/after start as baseline (open), and the last candle at/before end as final (close).
-4. Compute % change = (final − start) / start.
-5. Mark verified if at least two data points exist; surface the chart URL for public review.
-
-Display in UI:
-- Each runner includes a "View on GeckoTerminal" link to the pool chart.
-- A "Verified" badge is shown when sufficient OHLCV data supports the settlement window.
-
-### Settlement and Payouts
-At SETTLED:
-- Compute total pot P and rake (500 bps for SOL bets).
-- Split rake into Treasury (60%) and Jackpot contribution (40%).
-- If jackpot race, add current jackpot balance to prize pool and reset accounted payout portion.
-- Identify winning bets and distribute prize pool pro-rata.
-- Transfer rake to treasury account; payouts to winners from escrow; jackpot contribution remains accounted in escrow.
-- Record settlement transfers and per-wallet results for leaderboards and analytics.
-
-Numerical considerations:
-- SOL precision is 9 decimals (lamports); payouts are rounded down to 9 decimals.
-- Transfers and calculations use Decimal arithmetic to avoid floating-point drift.
-
-### Edge Points: Power-User Rewards
-Edge Points score user performance across races and will be redeemable in future programs financed by the protocol's rake.
-
-Scoring (per race, simplified):
-- Base: 1,000 points; +5,000 if the user wins (has a positive payout).
-- Bet contribution: 1,500 × sqrt(betAmount).
-- Payout contribution: 2,500 × sqrt(payoutAmount).
-- Efficiency: min(5, payout/bet) × 1,000.
-- Pot multiplier: points × [1 + min(1, totalPot/1000) × 0.25].
-- Loss scaling: ×0.7 on losses; minimum floor 500 points.
-
-Design rationale:
-- Rewards intelligent risk-taking and efficiency rather than raw size.
-- Damps whale dominance via square-root scaling.
-- Encourages participation in deeper, more competitive pots.
-
-Future utility (examples):
-- Tiered fee rebates and boosted jackpot tickets
-- Airdrop eligibility and allowlist priority
-- Governance signaling weight alongside $RACE holdings
-
-### Security, Fairness, and Operations
-- Strict state machine disallows illegal transitions and ensures only one active race at a time.
-- Baseline prices are captured at LOCK to prevent "late betting."
-- All pricing is from a single USD source to avoid quote skew.
-- GeckoTerminal OHLCV is cached shortly to reduce load while remaining independently verifiable.
-- Treasury and jackpot balances are tracked, with rake transfers executed and recorded.
-
-Operational controls:
-- Admin panel can create races, lock, and cancel when necessary.
-- Faucet and dev tooling exist for non-production environments.
+### Security and Fairness
+- All drop rolls are provably fair and independently verifiable using published seeds and signatures
+- Card pool integrity is maintained through a server-side allowlist of valid card mints
+- Anti-spoofing verification ensures only real swap transactions qualify for drops
+- Protocol and escrow wallet swaps are excluded from eligibility to prevent gaming
+- Treasury holdings are publicly verifiable on Solscan at any time
+- Collector Crypt's vault holdings are auditable — each NFT maps to a specific physical graded card
+- $RACE balance verification is performed server-side against on-chain data, never trusting client-reported values
 
 ### Configuration
+
 Key environment variables:
-- `RPC_URL`: Solana RPC endpoint.
-- `OPEN_WINDOW_MINUTES`, `PROGRESS_WINDOW_MINUTES`, `TRANSITION_GRACE_MS`: Phase timings.
-- `RACESWAP_PROGRAM_ID`: On-chain Swap&Rip program address.
-- `RACESWAP_TREASURY_WALLET`: Treasury wallet for Swap&Rip fees.
-- `RACESWAP_DROP_MIN_SOL`: Minimum SOL for card drop eligibility (default 0.1).
-- `RACESWAP_DROP_MIN_USDC`: Minimum USDC for card drop eligibility (default 10).
-- GeckoTerminal access is via HTTPS; no private key is required for read-only data.
+- `RPC_URL`: Solana RPC endpoint
+- `RACESWAP_PROGRAM_ID`: On-chain program address
+- `RACESWAP_TREASURY_WALLET`: Treasury wallet for swap fees
+- `RACESWAP_DROP_MIN_SOL`: Minimum SOL for card drop eligibility (default 0.1)
+- `RACESWAP_DROP_MIN_USDC`: Minimum USDC for card drop eligibility (default 10)
+- `CARD_DROP_ONE_IN_PER_SOL`: Base probability denominator per 1 SOL (default: 80)
+- `CARD_DROP_PROBABILITY_CAP`: Maximum probability cap (default: 0.25)
 
-### Roadmap (Indicative)
-- ✅ Mainnet launch with SOL betting
-- ✅ Swap&Rip integration with Jupiter aggregator
-- ✅ Pokémon Card Drops with provably fair NFT distribution
-- ✅ RACE Boosts holder reward system (1M/5M/10M/20M tiers)
-- Advanced runner curation and risk filters (liquidity thresholds, age gates)
-- On-chain verifiable settlement commitments and public proofs
-- Edge Points redemption, fee tiers, and partner perks
-- Expanded card treasury with additional collectible categories
-- $RACE token integration for enhanced utility and governance
-- Community governance around rake, jackpot cadence, and runner lists
-
-### Disclaimers
-- This product is experimental software. Markets can be volatile and illiquid.
-- Jurisdictional restrictions may apply; users are responsible for compliance with local laws.
-- Token swaps via Swap&Rip are subject to market conditions and slippage.
-- Card drops are not guaranteed; probability-based rewards are subject to cryptographic randomness.
-- Physical card redemption (if offered) may be subject to shipping restrictions and verification requirements.
-- $RACE token holdings for boost verification are checked on-chain and may be subject to network latency.
-
-### Appendix: References
-- State machine and timing: `server/race-state-machine.ts`
-- Settlement and rake math: `server/settlement.ts`
-- Edge Points formula: `server/edge-points.ts`
-- GeckoTerminal integration and OHLCV verification: `server/geckoterminal.ts`
-- Live price sourcing for runners: `server/prices.ts`
-- Swap&Rip implementation: `server/raceswap.ts`, `client/src/lib/raceswap-v3.ts`
-- Swap rewards and boosts: `server/raceswap-swap-rewards.ts`, `server/routes.ts` (`/api/raceswap/swap-rewards`)
-- Card drop notifications: `server/card-notifications.ts`
-- Pokémon card metadata: `client/src/lib/pokemon-cards.ts`
-- Card drops UI: `client/src/pages/CardDrops.tsx`, `client/src/components/PokemonCardRail.tsx`
-- Provably fair verification: `client/src/components/ProvablyFairVerifyDialog.tsx`
-- Crate animation: `client/src/components/RaceswapCardCrate.tsx`
-- Mobile card showcase: `client/src/components/MobileCardShowcase.tsx`
-
-### Appendix: Configuration Reference
-
-**Card Drop Configuration (Environment Variables):**
-- `RACESWAP_DROP_MIN_SOL`: Minimum SOL amount for card drop eligibility (default: 0.1)
-- `RACESWAP_DROP_MIN_USDC`: Minimum USDC amount for card drop eligibility (default: 10)
-- `CARD_DROP_ONE_IN_PER_SOL`: Base probability denominator per 1 SOL (default: 80, meaning 1 in 80)
-- `CARD_DROP_PROBABILITY_CAP`: Maximum probability cap (default: 0.25, meaning 25%)
-
-**Boost Tier Thresholds (Hardcoded):**
+**Boost Tier Thresholds:**
 | Variable | Value | Multiplier |
 |----------|-------|------------|
 | Tier 1M  | 1,000,000 $RACE | 1.10x |
@@ -411,4 +326,35 @@ Key environment variables:
 
 **Treasury Addresses:**
 - RaceBank NFT Treasury: `6yHeKfbTqSDiDgteku2ExJNcF3VghXxAGUEPPyjwqT4u`
-- Swap&Rip Treasury: Configured via `RACESWAP_TREASURY_WALLET` environment variable
+- Swap Fee Treasury: Configured via `RACESWAP_TREASURY_WALLET` environment variable
+
+### Roadmap
+- Mainnet launch with Jupiter-powered swaps
+- Pokémon Card Drops with provably fair NFT distribution
+- RACE Boosts holder reward system (1M/5M/10M/20M tiers)
+- Collector Crypt integration for full physical card redemption
+- Expanded card treasury with additional sets and premium graded cards
+- Partner integrations — bringing card drops to third-party trading terminals
+- $RACE token utility expansion
+- Additional collectible categories beyond Pokémon (sports cards, vintage collectibles)
+- Community governance around drop rates, card pool curation, and partner programs
+
+### Disclaimers
+- This product is experimental software.
+- Jurisdictional restrictions may apply; users are responsible for compliance with local laws.
+- Token swaps are subject to market conditions and slippage.
+- Card drops are not guaranteed; probability-based rewards are subject to cryptographic randomness.
+- Physical card redemption through Collector Crypt may be subject to shipping restrictions, verification requirements, and Collector Crypt's terms of service.
+- $RACE token holdings for boost verification are checked on-chain and may be subject to network latency.
+- Card values (insured value) reflect market estimates and may fluctuate.
+
+### Appendix: References
+- Swap implementation: `server/raceswap.ts`, `client/src/lib/raceswap-v3.ts`
+- Swap rewards and boosts: `server/raceswap-swap-rewards.ts`, `server/routes.ts` (`/api/raceswap/swap-rewards`)
+- Card drop notifications: `server/card-notifications.ts`
+- Pokémon card metadata: `client/src/lib/pokemon-cards.ts`
+- Card drops UI: `client/src/pages/CardDrops.tsx`, `client/src/components/PokemonCardRail.tsx`
+- Provably fair verification: `client/src/components/ProvablyFairVerifyDialog.tsx`
+- Crate animation: `client/src/components/RaceswapCardCrate.tsx`
+- Mobile card showcase: `client/src/components/MobileCardShowcase.tsx`
+- Collector Crypt: https://collectorcrypt.com | [@Collector_Crypt](https://x.com/Collector_Crypt)
